@@ -8,7 +8,7 @@ header("location: admin.php");
 exit();
 }
 ?>
-<h4>Algunas estádisticas del foro ...</h4>
+<h4>Algunas estadísticas del foro ...</h4>
 <?php
 $consulta = "SELECT COUNT(id_categoria) AS total_indices FROM categorias";
 $resultado = $conexion -> query($consulta);
