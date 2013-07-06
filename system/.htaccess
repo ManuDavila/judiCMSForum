@@ -1,0 +1,24 @@
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files conexion.php>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files project.php>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files procesos.php>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files session.php>
+Order allow,deny
+Deny from all
+</Files>

@@ -1,0 +1,21 @@
+<?php
+if(isset($_POST["nuevo_indice"]))
+{
+session_start();
+if ($_SESSION["admin"] != true)
+{
+header("location: admin.php");
+exit();
+}
+$title = addslashes(htmlspecialchars($_POST["titulo"]));
+$description = addslashes(htmlspecialchars($_POST["descripcion"]));
+$keywords = addslashes(htmlspecialchars($_POST["keywords"]));
+$consulta = "INSERT INTO categorias(categoria, title, description, keywords) VALUES ('$title', '$title', '$description', '$keywords')";
+$resultado = $conexion->query($consulta);
+$msg_box = "
+<div class='alert alert-success'>
+<button type='button' class='close' data-dismiss='alert'>&times;</button>
+<strong>Tarea realizada con éxito</strong>
+</div>";
+}
+?>

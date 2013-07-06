@@ -1,0 +1,24 @@
+RewriteEngine On
+Options +FollowSymLinks 
+
+DirectoryIndex index.php
+
+AddDefaultCharset charset=ISO-8859-1
+
+#algunos servidores no lo soportan
+#Desactivacion de las Magic quotes para evitar ataques SQL
+#php_flag magic_quotes_gpc off
+
+#algunos servidores no lo soportan
+#Desactiva el inicio de sesion automatico
+#php_flag session.auto_start off
+
+#impedir navegacion en directorios
+Options All -Indexes 
+
+#Errores
+ErrorDocument 404 http://localhost/judiCMSForum/error.php
+ErrorDocument 403 http://localhost/judiCMSForum/error.php
+ErrorDocument 400 http://localhost/judiCMSForum/error.php
+ErrorDocument 401 http://localhost/judiCMSForum/error.php
+ErrorDocument 500 http://localhost/judiCMSForum/error.php

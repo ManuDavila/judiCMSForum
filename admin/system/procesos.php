@@ -1,0 +1,29 @@
+<?php
+include "procesos/detalles-foro.php";
+include "procesos/eliminar-indices.php";
+include "procesos/nuevo-indice.php";
+include "procesos/editar-indice.php";
+include "procesos/nuevo-subindice.php";
+include "procesos/eliminar-subindices.php";
+include "procesos/editar-subindice.php";
+include "procesos/eliminar-temas.php";
+include "procesos/cerrar-temas.php";
+include "procesos/abrir-temas.php";
+include "procesos/eliminar-mensaje.php";
+include "procesos/buscar-usuario.php";
+include "procesos/eliminar-usuarios.php";
+include "procesos/bloquear-ip-usuarios.php";
+include "procesos/enviar-email.php";
+include "procesos/informacion-basica-foro.php";
+include "procesos/notificaciones.php";
+include "procesos/themes.php";
+include "procesos/icono.php";
+include "procesos/instalar-tema.php";
+include "procesos/editar-cabecera.php";
+include "procesos/bloquear-ips.php";
+include "procesos/htaccess.php";
+include "procesos/antirobots.php";
+include "procesos/form-antirobots.php";
+include "procesos/check-peligro.php";
+include "procesos/exit.php";
+?>

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /system/
+Disallow: /includes/
+Disallow: /bootstrap/
+Sitemap: http://www.mercado-anuncios.es/sitemap.php

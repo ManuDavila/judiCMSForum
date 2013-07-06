@@ -1,0 +1,47 @@
+
+paginacion.php es una clase para crear una paginación a través de consultas a la base de datos, 
+el uso de esta clase es bastante sencillo y permite agregarle parámetros opcionales.
+
+<?php
+//primero se hace la llamada al script
+require("paginacion.php");
+
+// conexion
+// paginacion(conexion a la base de datos);
+$paginacion = new paginacion($conexion);
+
+if isset($_POST["buscar"])
+{
+
+// se recibe la variable buscar
+$buscar = $_POST["buscar"];
+
+//se cuentan el número de fila según la consulta
+//contar_filas(consulta para contar el total de filas);
+$paginacion->contar_filas("SELECT COUNT(id_producto) as total FROM productos WHERE MATCH (nombre, descripcion,  keywords) AGAINST ('$buscar' IN BOOLEAN MODE)");
+
+//tipo_resultados(numero de páginas, número de filas por página);
+$paginacion->tipo_resultados(3, 10);
+
+//se realiza la consulta para extraer datos. Las variables ... $_empezar_de_fila y $_maximo_resultados_pagina 
+// son variable globales y siempre se deben de incluir tal y como en el ejemplo.
+$consulta_buscar = "SELECT * FROM productos WHERE MATCH (nombre, descripcion,  keywords) AGAINST ('$buscar' IN BOOLEAN MODE) ORDER BY id_producto DESC LIMIT ".$_empezar_de_fila.", ".$_maximo_resultados_pagina."";
+$resultado_buscar = $conexion->query($consulta_buscar);
+}
+
+// Se imprime los resultados
+
+while($fila = $resultado_buscar->fetch_array())
+{
+echo $fila[0]."<br>"; // ...
+}
+?>
+
+
+//Se imprime la paginación
+<div id="paginacion">
+<?php
+// paginas(id, parametros opcionales);
+$paginacion->paginas("paginacion", "&buscar=$buscar&categoria=coches");
+?>
+</div>
