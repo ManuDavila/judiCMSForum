@@ -475,7 +475,7 @@ $es_valido_correo = "<span class='label label-warning'>Es necesario un servidor 
 		<td style="text-align: right;">Repetir Password:</td><td><input type="password" name="repetir_password_db" id="repetir_password_db"> * <label id="e_repetir_password_db" class="text-error"></label></td>
 		</tr>
 		<tr>
-		<td style="text-align: right;">Base de Datos:</td><td><input type="text" name="db"></td>
+		<td style="text-align: right;">Base de Datos:</td><td><input type="text" name="db"> * </td>
 		</tr>
 		<tr>
 		<td style="text-align: right;"></td>
