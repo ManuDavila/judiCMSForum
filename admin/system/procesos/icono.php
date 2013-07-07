@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["icono"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $nombre = $_FILES['file']['name'];
 if($nombre == "")
 {

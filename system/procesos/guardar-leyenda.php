@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["guardar_leyenda"]))
 {
-session_start();
-if ($_SESSION["usuario"] != true)
-{
-header("location: index.php");
-exit();
-}
+restringido();
 $leyenda = addslashes(htmlspecialchars($_POST["guardar_leyenda"]));
 if (strlen($leyenda) > 50)
 {

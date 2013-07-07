@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["destinatarios"]) != "")
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 require("system/phpmailer/class.phpmailer.php");
 $asunto = $_POST["asunto"];
 $destinatarios = $_POST["destinatarios"];

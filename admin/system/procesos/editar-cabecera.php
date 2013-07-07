@@ -1,13 +1,7 @@
 <?php 
 if (isset($_POST["editar_cabecera"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
+restringido();
 $no_permitido = array("<?", "<?php", "?>", "\\");
 $permitido = array("&lt;?", "&lt;?php", "?&gt;", "");
 

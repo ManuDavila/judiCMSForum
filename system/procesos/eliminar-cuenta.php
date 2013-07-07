@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["eliminar_cuenta"]))
 {
-session_start();
-if ($_SESSION["usuario"] != true)
-{
-header("location: index.php");
-exit();
-}
+restringido();
 $consulta = "SELECT avatar FROM usuarios WHERE id=".$_SESSION["id"]."";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();

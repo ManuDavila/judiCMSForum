@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["eliminar_mensaje"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 foreach($_POST["item_eliminar_mensaje"] as $campo => $valor){
 if (preg_match("/^([0-9])+$/", $valor))
 {

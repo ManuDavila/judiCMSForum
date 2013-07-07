@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["cerrar_temas"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 foreach($_POST["item_a_cerrar"] as $campo => $valor){
 if (preg_match("/^([0-9])+$/", $valor))
 {

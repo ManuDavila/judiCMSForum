@@ -96,7 +96,6 @@ header("location: index.php");
 exit();
 }
 }
-
 else
 {
 $formularios_temas = "<strong>Para poder crear temas o comentar tienes que <a href='index.php?action=registro'>REGISTRARTE</a></strong>";
@@ -109,5 +108,14 @@ $formularios_temas = "<strong>Para poder crear temas o comentar tienes que <a hr
     <button type='submit' class='btn'>Iniciar sesión</button>
 	<button type='submit' class='btn btn-info'>Regístrate</button>
     </form>";
+}
+function restringido()
+{
+session_start();
+if ($_SESSION["usuario"] != true)
+{
+header("location: index.php");
+exit();
+}
 }
 ?>

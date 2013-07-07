@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["nuevo_indice"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $title = addslashes(htmlspecialchars($_POST["titulo"]));
 $description = addslashes(htmlspecialchars($_POST["descripcion"]));
 $keywords = addslashes(htmlspecialchars($_POST["keywords"]));

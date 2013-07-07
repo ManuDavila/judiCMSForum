@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["htaccess"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $server = $_SERVER['HTTP_HOST'];
 $server = str_replace("www.", "", $server);
 

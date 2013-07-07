@@ -22,4 +22,13 @@ else
 header("location: admin.php");
 exit();
 }
+function restringido()
+{
+session_start();
+if ($_SESSION["admin"] != true)
+{
+header("location: admin.php");
+exit();
+}
+}
 ?>

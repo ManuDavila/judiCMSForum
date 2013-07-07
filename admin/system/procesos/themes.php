@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["theme"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $theme = htmlspecialchars($_POST["theme"]);
 $consulta = "UPDATE detalles_foro SET theme='$theme'";
 $resultado = $conexion -> query($consulta);

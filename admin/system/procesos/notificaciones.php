@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["informacion_notificaciones"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $notificacion_registro = addslashes(htmlspecialchars(strip_tags($_POST["registro"])));
 $notificacion_tema = addslashes(htmlspecialchars(strip_tags($_POST["temas"])));
 $notificacion_mensaje = addslashes(htmlspecialchars(strip_tags($_POST["mensajes"])));

@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["nuevo_subindice"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $id_categoria = $_POST["id_categoria"];
 $title = addslashes(htmlspecialchars($_POST["titulo"]));
 $description = addslashes(htmlspecialchars($_POST["descripcion"]));

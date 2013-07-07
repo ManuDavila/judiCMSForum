@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["informacion_basica"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $title = addslashes(strip_tags(htmlspecialchars($_POST["title"])));
 $keywords = addslashes(strip_tags(htmlspecialchars($_POST["keywords"])));
 $description = addslashes(strip_tags(htmlspecialchars($_POST["description"])));

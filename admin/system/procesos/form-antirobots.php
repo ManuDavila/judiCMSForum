@@ -1,13 +1,7 @@
 <?php
 if(isset($_POST["antirobots"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
+restringido();
 $max_registro = $_POST["max_registro"];
 $max_activar_cuenta = $_POST["max_activar_cuenta"];
 $max_iniciar_sesion = $_POST["max_iniciar_sesion"];

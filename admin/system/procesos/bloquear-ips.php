@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["lista_negra"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $consulta_limpieza = "DELETE FROM ip";
 $resultado_limpieza = $conexion -> query ($consulta_limpieza);
 

@@ -1,14 +1,9 @@
 <?php
 if (isset($_POST["subir_avatar"]))
 {
-session_start();
-if ($_SESSION["usuario"] != true)
-{
-header("location: index.php");
-exit();
-}
-$nombre = $_FILES['file']['name'];
+restringido();
 
+$nombre = $_FILES['file']['name'];
 $rand = rand(10000, 99999);
 $cad = $rand."-".$nombre;
 // Fin de la creacion de la cadena aletoria

@@ -1,12 +1,7 @@
 <?php
 if (isset($_POST["nick_usuario"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 $nick_usuario = addslashes(htmlspecialchars(strip_tags($_POST["nick_usuario"])));
 $consulta = "SELECT id FROM usuarios WHERE nick='$nick_usuario'";
 $resultado = $conexion -> query($consulta);

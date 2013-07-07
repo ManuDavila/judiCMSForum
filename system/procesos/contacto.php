@@ -1,13 +1,7 @@
 <?php
 if(isset($_POST["contacto"]))
 {
-session_start();
-if ($_SESSION["usuario"] != true)
-{
-header("location: index.php");
-exit();
-}
-
+restringido();
 /*SEGURIDAD*/
 if (empty($_COOKIE["contacto"]))
 {

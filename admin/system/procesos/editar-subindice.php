@@ -1,13 +1,7 @@
 <?php 
 if (isset($_POST["editar_subindice"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
+restringido();
 $id_subcategoria = addslashes(htmlspecialchars(strip_tags($_POST["editar_subindice"])));
 
 $consulta = "SELECT id_categoria FROM subcategorias WHERE id_subcategoria=$id_subcategoria";

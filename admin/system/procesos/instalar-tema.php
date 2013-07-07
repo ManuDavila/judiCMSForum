@@ -1,12 +1,7 @@
 <?php
 if(isset($_POST["instalar_tema"]))
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 if ($_POST["instalar_tema"] == "")
 {
 $msg_box = "

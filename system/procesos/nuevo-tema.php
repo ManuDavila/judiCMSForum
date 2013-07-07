@@ -1,13 +1,7 @@
 <?php
 if(isset($_POST["nuevo_tema"]))
 {
-session_start();
-if ($_SESSION["usuario"] != true)
-{
-header("location: index.php");
-exit();
-}
-
+restringido();
 /*SEGURIDAD*/
 if (empty($_COOKIE["tema"]))
 {
