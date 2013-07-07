@@ -1,14 +1,7 @@
 <?php
-
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "editar-subindice")
 {
+restringido();
 $id_subcategoria = $_GET["id_subcategoria"];
 //Evitar inyección sql
 if (!preg_match("/^([0-9])+$/", $id_subcategoria))

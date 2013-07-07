@@ -1,12 +1,7 @@
 <?php
 if($_GET["action"] == "panel-usuario")
 {
-session_start();
-if ($_SESSION["usuario"] != true)
-{
-header("location: index.php");
-exit();
-}
+restringido();
 ?>
 <center>
 <table>

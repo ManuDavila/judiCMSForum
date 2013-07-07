@@ -1,12 +1,7 @@
 <?php 
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
 if ($_GET["action"] == "usuario")
 {
+restringido();
 $id_usuario = $_GET["id_usuario"];
 $consulta_nicks = "SELECT nick FROM usuarios";
 $resultado_nicks = $conexion -> query($consulta_nicks);

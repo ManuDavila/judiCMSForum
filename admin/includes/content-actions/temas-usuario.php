@@ -1,13 +1,7 @@
 <?php
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "temas" && $_GET["id_usuario"])
 {
+restringido();
 $id_usuario = $_GET["id_usuario"];
 ?>
 <h3>Temas de usuario</h3>

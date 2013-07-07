@@ -1,12 +1,7 @@
 <?php
 if ($_GET["action"] == "themes")
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 function listar_directorios_ruta($ruta){
    // abrir un directorio y listarlo recursivo
    if (is_dir($ruta)) {

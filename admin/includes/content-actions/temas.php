@@ -1,13 +1,7 @@
 <?php 
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "temas" && !$_GET["id_usuario"])
 {
+restringido();
 ?>
 <h3>Temas del foro</h3>
 <div class="alert alert-info">Tenga en cuenta que al eliminar un tema también se eliminarán todos los mensajes asociados al tema.</div>

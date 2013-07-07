@@ -1,12 +1,7 @@
 <?php
 if($_GET["action"] == "detalles")
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 ?>
 <h3>Detalles administrativos del Foro</h3>
     <div class="btn-group">

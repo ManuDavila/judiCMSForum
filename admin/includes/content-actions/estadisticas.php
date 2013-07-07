@@ -1,12 +1,7 @@
 <?php
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
 if($_GET["action"] == "estadisticas")
 {
+restringido();
 $fecha = date("Y-m-d");
 $consulta_fecha_inicial = "SELECT fecha FROM visitas LIMIT 0, 1";
 $resultado_fecha_inicial = $conexion -> query($consulta_fecha_inicial);

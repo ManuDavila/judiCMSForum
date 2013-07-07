@@ -1,14 +1,7 @@
 <?php 
-
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "mensajes" && !$_GET["id_usuario"])
 {
+restringido();
 $tema = $_GET["tema"];
 $id_tema = $_GET["id_tema"];
 ?>

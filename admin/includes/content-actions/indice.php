@@ -1,14 +1,7 @@
 <?php 
-
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "indice")
 {
+restringido();
 ?>
 <h3>Índices del foro</h3>
 <div class="alert alert-info">Tenga en cuenta que al eliminar un índice también se eliminarán todos los elementos asociados como subíndices, temas y mensajes.</div>

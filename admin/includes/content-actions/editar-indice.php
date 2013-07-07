@@ -1,14 +1,7 @@
 <?php
-
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "editar-indice")
 {
+restringido();
 $id_categoria = $_GET["id_categoria"];
 //Evitar inyección sql
 if (!preg_match("/^([0-9])+$/", $id_categoria))

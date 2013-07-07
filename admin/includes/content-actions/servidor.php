@@ -1,12 +1,7 @@
 <?php
 if ($_GET["action"] == "servidor")
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 ?>
 <h3>Configuración del Servidor</h3>
 

@@ -1,11 +1,5 @@
 <?php
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
+restringido();
 if ($_GET["action"] == "todos-usuarios")
 {
 $intervalo_inicial = $_GET["intervalo_inicial"];

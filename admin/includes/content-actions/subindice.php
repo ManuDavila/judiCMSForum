@@ -1,13 +1,7 @@
 <?php 
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
-
 if ($_GET["action"] == "subindice")
 {
+restringido();
 ?>
 <h3>Subíndices del foro</h3>
 <div class="alert alert-info">Tenga en cuenta que al eliminar un subíndice también se eliminarán todos los elementos asociados como temas y mensajes.</div>

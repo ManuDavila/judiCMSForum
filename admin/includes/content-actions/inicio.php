@@ -1,12 +1,7 @@
 <?php 
 if($_GET["action"] == "")
 {
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
+restringido();
 ?>
 <h4>Algunas estadísticas del foro ...</h4>
 <?php
