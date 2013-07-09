@@ -21,4 +21,3 @@ $meta_robots = "noindex, nofollow";
 	<script src="../bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/datepicker/js/bootstrap-datepicker-es.js"></script>
 	<script src="js/javascript.js"></script>
-	</head>
