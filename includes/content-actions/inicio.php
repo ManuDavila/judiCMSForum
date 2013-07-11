@@ -11,9 +11,9 @@ while($fila_categoria=$resultado_categoria->fetch_array())
     <table class="table table-bordered" style="width: 90%;">
    <tr>
    <td style="width: 25%;"><?php echo "<a href='index.php?action=categoria&categoria=".$fila_categoria["id_categoria"]."'><strong style='font-size: 18px;'>".$fila_categoria["categoria"]; ?></strong></a></td>
-   <td><strong>TEMAS</strong></td>
-   <td><strong>MENSAJES</strong></td>
-   <td style="width: 60%;"><strong>ÚLTIMO MENSAJE</strong></td>
+   <td><strong><?php echo $inc_inicio[0]; ?></strong></td>
+   <td><strong><?php echo $inc_inicio[1]; ?></strong></td>
+   <td style="width: 60%;"><strong><?php echo $inc_inicio[2]; ?></strong></td>
    </tr>
    <?php
    $consulta_subcategoria = "SELECT * FROM subcategorias WHERE id_categoria=".$fila_categoria["id_categoria"]."";
@@ -53,7 +53,7 @@ while($fila_categoria=$resultado_categoria->fetch_array())
    $fila_ultimo_msg = $resultado_ultimo_msg->fetch_array();
    if ($fila_ultimo_msg == 0)
    {
-    $content_tema = "<span class='label label-info'>Aun no hay temas que mostrar</span>";
+    $content_tema = "<span class='label label-info'>".$inc_inicio[3]."</span>";
    }
    else
    {
@@ -61,10 +61,10 @@ while($fila_categoria=$resultado_categoria->fetch_array())
    $resultado_user = $conexion->query($consulta_user);
    $fila_user = $resultado_user->fetch_array();
    $nombre_autor = "<a href='index.php?action=user&id_usuario=".$fila_user["id"]."&query=verusuario'><span class='label label-important'>".$fila_user["nick"]."</span></a>";
-   $content_tema = "".$nombre_autor." en el tema <span class='icon-arrow-right'></span> <a id='text-overflow-$x' href='index.php?action=tema&categoria=".$fila_categoria["id_categoria"]."&subcategoria=".$fila_subcategoria["id_subcategoria"]."&tema=".$fila_ultimo_msg["id_tema"]."'>".$fila_ultimo_msg["tema"]."</a>";
+   $content_tema = "".$nombre_autor." ".$inc_inicio[4]." <span class='icon-arrow-right'></span> <a id='text-overflow-$x' href='index.php?action=tema&categoria=".$fila_categoria["id_categoria"]."&subcategoria=".$fila_subcategoria["id_subcategoria"]."&tema=".$fila_ultimo_msg["id_tema"]."'>".$fila_ultimo_msg["tema"]."</a>";
    if($fila_user["nick"] == "")
    {
-   $nombre_autor = "<span class='label label-important'>Ya no pertenece al foro</span>";
+   $nombre_autor = "<span class='label label-important'>".$inc_inicio[5]."</span>";
    }
    }
 echo $content_tema;

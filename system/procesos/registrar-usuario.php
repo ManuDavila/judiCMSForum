@@ -1,7 +1,6 @@
 <?php
 if (isset($_POST["registrar_usuario"]))
 {
-/*SEGURIDAD*/
 if (empty($_COOKIE["registrar"]))
 {
 setcookie("registrar", 1, time()+3600);
@@ -15,7 +14,6 @@ if ($_COOKIE["registrar"] > $max_registro)
 echo "NO ROBOTS";
 exit();
 }
-/*SEGURIDAD*/
 
 $nick = addslashes(htmlspecialchars(strip_tags($_POST["nick"])));
 $nombre = addslashes(htmlspecialchars(strip_tags($_POST["nombre"])));
@@ -28,7 +26,6 @@ $sexo = addslashes(htmlspecialchars(strip_tags($_POST["sexo"])));
 $ip = $_SERVER["REMOTE_ADDR"];
 
 
-/*Comprobar si existe usuario*/
 $consulta = "SELECT email FROM usuarios WHERE email='$email'";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
@@ -37,13 +34,11 @@ if($fila>0)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>El usuario ya se encuentra registrado</strong>
+<strong>".$pro_registro[0]."</strong>
 </div>";
 return;
 }
-/*Comprobar si existe usuario*/
 
-/*SEGURIDAD*/
 $filtrar = new InputFilter();
 $nombre = $filtrar->process($nombre);
 $apellido_1 = $filtrar->process($apellido_1);
@@ -58,15 +53,13 @@ $codigo_verificacion .= $codigo_array[rand(0, count($codigo_array) - 1)];
 }
 $activo = "false";
 $fecha = date("Y-m-d");
-/*SEGURIDAD*/
 
-/*SEGURIDAD*/
 if(!preg_match("/^[0-9a-zA-Z·ÈÌÛ˙‡ËÏÚ˘¿»Ã“Ÿ¡…Õ”⁄Ò—¸‹_]+$/", $nick))
 {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -76,7 +69,7 @@ if (strlen($nick) < 3 || strlen($nick) > 25)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -90,21 +83,17 @@ if ($fila_nick > 0)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
-/*SEGURIDAD*/
 
-/*SEGURIDAD*/
-
-//Sexo
 if ($sexo == "")
 {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>No has indicado el sexo</strong>
+<strong>".$pro_registro[2]."</strong>
 </div>";
 return;
 }
@@ -119,7 +108,6 @@ if ($sexo == "chica")
 $avatar = "imagenes/avatares/chica.jpg";
 }
 
-//nombre
 $elemento = $nombre;
 $buscar = "/^[a-zA-Z·ÈÌÛ˙‡ËÏÚ˘¿»Ã“Ÿ¡…Õ”⁄Ò—¸‹\s]+$/";
 if ($elemento == "")
@@ -127,7 +115,7 @@ if ($elemento == "")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -136,12 +124,11 @@ else if(!preg_match($buscar, $elemento) || strlen($elemento) > 50)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
 
-//apellido 1
 $elemento = $apellido_1;
 $buscar = "/^[a-zA-Z·ÈÌÛ˙‡ËÏÚ˘¿»Ã“Ÿ¡…Õ”⁄Ò—¸‹\s]+$/";
 if ($elemento == "")
@@ -149,7 +136,7 @@ if ($elemento == "")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -158,12 +145,11 @@ else if(!preg_match($buscar, $elemento) || strlen($elemento) > 50)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
 
-//apellido 2
 $elemento = $apellido_2;
 $buscar = "/^[a-zA-Z·ÈÌÛ˙‡ËÏÚ˘¿»Ã“Ÿ¡…Õ”⁄Ò—¸‹\s]+$/";
 if ($elemento == "")
@@ -171,7 +157,7 @@ if ($elemento == "")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -180,12 +166,11 @@ else if(!preg_match($buscar, $elemento) || strlen($elemento) > 50)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
 
-//email
 $elemento = $email;
 $buscar = "/^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/";
 if ($elemento == "")
@@ -193,7 +178,7 @@ if ($elemento == "")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -202,12 +187,11 @@ else if(!preg_match($buscar, $elemento) || strlen($elemento) > 80)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
 
-//password
 $elemento = $password;
 $buscar = "/^([a-z]+[0-9]+)|([0-9]+[a-z]+)/i";
 if ($elemento == "")
@@ -215,7 +199,7 @@ if ($elemento == "")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -224,19 +208,18 @@ else if(!preg_match($buscar, $elemento) || strlen($elemento) < 8 || strlen($elem
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
 
-//repetir password
 $elemento = $repetir_password;
 if ($elemento != $password)
 {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa</strong>
+<strong>".$pro_registro[1]."</strong>
 </div>";
 return;
 }
@@ -256,22 +239,22 @@ if ($notificacion_registro == "on")
 {
 $fecha = date("d-m-Y");
 $hora = date("H:m:s");
-$titulo = "NotificaciÛn de registro de usuario en $title_foro";
+$titulo = "".$pro_registro[3]." $title_foro";
 $mensaje = "
-<b>Buenos dÌas administrador del foro <a href='$url_foro'>$title_foro</a> ...</b>
+<b>".$pro_registro[4]." <a href='$url_foro'>$title_foro</a> ...</b>
 <br><br>
-Nuevo usuario registrado:
+".$pro_registro[5].":
 <br><br>
-Fecha: $fecha<br>
-Hora: $hora<br>
-nombre: $nombre<br>
-apellidos: $apellido_1 $apellido_2<br>
+".$pro_registro[6].": $fecha<br>
+".$pro_registro[7].": $hora<br>
+".$pro_registro[8].": $nombre<br>
+".$pro_registro[9].": $apellido_1 $apellido_2<br>
 Nick: $nick<br>
 Whois: <a href='http://whois.arin.net/rest/ip/$ip'>http://whois.arin.net/rest/ip/$ip</a>
 <br><br>
-Puedes tener m·s informaciÛn sobre este usuario introduciendo su nick en la b˙squeda de usuarios del <a href='".$url_foro."admin/'>panel de administraciÛn</a>.
+".$pro_registro[10]." <a href='".$url_foro."admin/'>".$pro_registro[11]."</a>.
 <br><br>
-Saludos.
+".$pro_registro[12].".
 ";
 $mail = new PHPMailer();
 $mail->Host = $url_foro;
@@ -285,19 +268,17 @@ $mail->Send();
 }
 /* ADMINISTRADOR */
 
-
 /* USUARIO */
-$titulo = "Confirmar registro - $title_foro";
-$mensaje = "<b>$nombre bienvenido a <a href='$url_foro'>$title_foro</a> ...</b>
+$titulo = "".$pro_registro[13]." - $title_foro";
+$mensaje = "<b>$nombre ".$pro_registro[14]." <a href='$url_foro'>$title_foro</a> ...</b>
 <br><br> 
-Para iniciar sesiÛn utilice la cuenta de correo electrÛnico y la contraseÒa con la que se 
-registrÛ.
+".$pro_registro[15]."
 <br><br>
-Para activar la cuenta vaya a la siguiente direcciÛn
-<a href='".$url_foro."index.php?action=activar'>ACTIVAR</a>
- y actÌvela con el siguiente cÛdigo: <b>$codigo_verificacion</b>
+".$pro_registro[16]."
+<a href='".$url_foro."index.php?action=activar'>".$pro_registro[17]."</a>
+".$pro_registro[18].": <b>$codigo_verificacion</b>
 <br><br>
-Gracias por registrarte en el foro, saludos.
+".$pro_registro[19]."
 ";
 $mail = new PHPMailer();
 $mail->Host = $url_foro;
@@ -314,7 +295,7 @@ if($mail->Send())
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Le ha sido enviado un email a su cuenta de correo electrÛnico para que confirme su cuenta</strong>
+<strong>".$pro_registro[20]."</strong>
 </div>";
 }
 else
@@ -322,7 +303,7 @@ else
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>No se ha podido procesar su consulta, prueba m·s tarde</strong>
+<strong>".$pro_registro[21]."</strong>
 </div>";
 }
 }

@@ -1,5 +1,5 @@
 <?php 
-$meta_title = addslashes("Panel de Administración del foro - ".$title_foro);
+$meta_title = addslashes($title_foro);
 $meta_description = addslashes("");
 $meta_keywords = addslashes("");
 $meta_robots = "noindex, nofollow";
@@ -10,7 +10,7 @@ $meta_robots = "noindex, nofollow";
 	<meta name="title" content="<?php echo $meta_title; ?>">
 	<meta name="description" content="<?php echo $meta_description; ?>">
 	<meta name="keywords" content="<?php echo $meta_keywords; ?>">
-	<meta name="language" content="spanish">
+	<meta name="language" content="<?php echo $head_adm[0]; ?>">
 	<meta name="robot" content="<?php echo $meta_robots; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -19,5 +19,5 @@ $meta_robots = "noindex, nofollow";
 	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	<script src="../bootstrap/js/jquery-1.10.1.min.js"></script>
 	<script src="../bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/datepicker/js/bootstrap-datepicker-es.js"></script>
-	<script src="js/javascript.js"></script>
+	<script src="js/datepicker/js/<?php echo $head_adm[1]; ?>"></script>
+	<script src="js/<?php echo $head_adm[2]; ?>"></script>

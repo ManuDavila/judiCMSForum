@@ -1,7 +1,7 @@
 <?php 
 if (isset($_POST["editar_subindice"]))
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $id_subcategoria = addslashes(htmlspecialchars(strip_tags($_POST["editar_subindice"])));
 
 $consulta = "SELECT id_categoria FROM subcategorias WHERE id_subcategoria=$id_subcategoria";
@@ -13,7 +13,6 @@ $title = addslashes(htmlspecialchars($_POST["titulo"]));
 $description = addslashes(htmlspecialchars($_POST["descripcion"]));
 $keywords = addslashes(htmlspecialchars($_POST["keywords"]));
 
-//Evitar inyección sql
 if (!preg_match("/^([0-9])+$/", $id_subcategoria))
 {
 header("location: index.php");

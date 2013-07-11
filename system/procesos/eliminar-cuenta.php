@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["eliminar_cuenta"]))
 {
-restringido();
+include_once "".$url_foro."system/restricted.php";
 $consulta = "SELECT avatar FROM usuarios WHERE id=".$_SESSION["id"]."";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();

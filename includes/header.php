@@ -2,7 +2,7 @@
 <br><br><br><br>
     <blockquote>
     <p><?php echo $description_foro; ?></p>
-    <small>Bienvenidos <cite title="Source Title">al Foro</cite></small>
+    <small><?php echo $inc_header[0]; ?> <cite title="Source Title"><?php echo $inc_header[1]; ?></cite></small>
     </blockquote>
 <?php include "system/procesos/include-cabecera.php"; ?>
 	<br><br>

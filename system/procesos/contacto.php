@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST["contacto"]))
 {
-restringido();
-/*SEGURIDAD*/
+include_once "".$url_foro."system/restricted.php";
+
 if (empty($_COOKIE["contacto"]))
 {
 setcookie("contacto", 1, time()+3600);
@@ -16,7 +16,7 @@ if ($_COOKIE["contacto"] > $max_contacto)
 echo "NO ROBOTS";
 exit();
 }
-/*SEGURIDAD*/
+
 $consulta = htmlspecialchars(strip_tags($_POST["contacto"]));
 $nick = $_SESSION["nick"];
 $id_usuario = $_SESSION["id"];
@@ -26,18 +26,18 @@ $ip = $_SERVER['REMOTE_ADDR'];
 
 require("system/phpmailer/class.phpmailer.php");
 
-$titulo = "Consulta de usuario - $title_foro";
-$mensaje = "<b>Administrador nueva consulta en el foro <a href='$url_foro'>$title_foro</a> ...</b>
+$titulo = "".$pro_contacto[0]." - $title_foro";
+$mensaje = "<b>".$pro_contacto[1]." <a href='$url_foro'>$title_foro</a> ...</b>
 <br><br>
-Fecha: $fecha<br>
-Hora: $hora<br>
+".$pro_contacto[2].": $fecha<br>
+".$pro_contacto[3].": $hora<br>
 Whois: <a href='http://whois.arin.net/rest/ip/$ip'>http://whois.arin.net/rest/ip/$ip</a>
 <br><br> 
-El usuario con nick:$nick y id:$id_usuario ha realizado la siguiente consulta ...
+".$pro_contacto[4].":$nick ".$pro_contacto[5]." id:$id_usuario ".$pro_contacto[6]." ...
 <br><br>
 <i>$consulta</i>
 <br><br>
-Puedes tener más información sobre este usuario introduciendo su nick o id de usuario en la búsqueda de usuarios del <a href='".$url_foro."admin/'>panel de administración</a>.
+".$pro_contacto[7]." <a href='".$url_foro."admin/'>".$pro_contacto[8]."</a>.
 <br><br>
 Saludos.
 ";
@@ -56,7 +56,7 @@ if($mail->send())
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Consulta enviada con éxito</strong>
+<strong>".$pro_contacto[9]."</strong>
 </div>";
 }
 }

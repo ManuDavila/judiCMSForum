@@ -1,7 +1,7 @@
 <?php
 if($_GET["action"] == "panel-usuario")
 {
-restringido();
+include_once "".$url_foro."system/restricted.php";
 ?>
 <center>
 <table>
@@ -14,34 +14,43 @@ $fila_avatar = $resultado_avatar->fetch_array();
 $el_avatar = $fila_avatar["avatar"];
 $leyenda = $fila_avatar["leyenda"];
 if ($leyenda != ""){
-$leyenda = "Leyenda: <span class='label label-inverse'>".$fila_avatar["leyenda"]."</span>";
+$leyenda = "<span class='label label-inverse'>".$fila_avatar["leyenda"]."</span>";
 }
 ?>
 <img class="img-rounded" src="<?php echo $el_avatar; ?>" style="width: 160px; height: 160px;">
 </td>
 <td style="padding-left: 15px;">
-Usuario: <a href="#"><strong><?php echo $_SESSION["nick"]; ?></strong></a>
+<?php echo $inc_panel_usuario[0]; ?>: <a href="#"><strong><?php echo $_SESSION["nick"]; ?></strong></a>
 <br>
 <?php 
 $fecha = $_SESSION["fecha"];
 $fecha = explode("-", $fecha);
-$fecha = $fecha[2]." de ".get_string_mes($fecha[1])." del ".$fecha[0];
+
+if ($language == "es")
+{
+$fecha = $fecha[2]." del ".get_string_mes($fecha[1])." del ".$fecha[0];
+}
+if ($language == "en")
+{
+$fecha = "".get_string_mes($fecha[1])." ".$fecha[2].", ".$fecha[0]."";
+}
+
 ?>
-Registrado el <?php echo $fecha; ?>
+<?php echo $inc_panel_usuario[3]; ?> <?php echo $fecha; ?>
 <br><br>
-<button id='button_avatar' class='btn btn-primary' data-toggle='modal' style='margin-right: 20px;' data-target='#myModal'>Cambiar Avatar</button><br><br>
-<button id='button_baja' class='btn btn-danger' data-toggle='modal' style='margin-right: 20px;' data-target='#myModal2'>Solicitar mi eliminación del foro</button>
+<button id='button_avatar' class='btn btn-primary' data-toggle='modal' style='margin-right: 20px;' data-target='#myModal'><?php echo $inc_panel_usuario[4]; ?></button><br><br>
+<button id='button_baja' class='btn btn-danger' data-toggle='modal' style='margin-right: 20px;' data-target='#myModal2'><?php echo $inc_panel_usuario[5]; ?></button>
 <br><br>
 <form method="post">
-<input type="text" name="guardar_leyenda" placeholder="Añade una Leyenda">
+<input type="text" name="guardar_leyenda" placeholder="<?php echo $inc_panel_usuario[6]; ?>">
 <br>
-<button type="submit" class="btn">Añadir leyenda</button>
+<button type="submit" class="btn"><?php echo $inc_panel_usuario[6]; ?></button>
 </form>
 </td>
 <td style="padding-left: 10px;">
 <table>
 <tr>
-<td>TEMAS</td>
+<td><?php echo $inc_panel_usuario[7]; ?></td>
 <td>
 <?php 
 $consulta_temas = "SELECT COUNT(id_tema) AS total_temas FROM temas WHERE id_usuario=".$_SESSION["id"]."";
@@ -52,7 +61,7 @@ echo "<a href='index.php?action=user&id_usuario=".$_SESSION["id"]."&query=temas'
 ?>
 </td>
 </tr>
-<tr><td>MENSAJES</td>
+<tr><td><?php echo $inc_panel_usuario[8]; ?></td>
 <td>
 <?php
 $consulta_mensajes = "SELECT COUNT(id_mensaje) AS total_mensajes FROM mensajes WHERE id_usuario=".$_SESSION["id"]." AND es_tema_principal='false'";
@@ -72,14 +81,14 @@ echo "<a href='index.php?action=user&id_usuario=".$_SESSION["id"]."&query=mensaj
 <div class='moda-body'>
 <br><br>
 <form method='post' enctype="multipart/form-data">
-<label><strong>Seleccionar imagen: </strong><input type="file" name="file"></label>
-<label>Formatos permitidos: jpg | jpeg | gif | png</label>
-<label>Tamaño máximo 1 mb</label>
+<label><strong><?php echo $inc_panel_usuario[9]; ?>: </strong><input type="file" name="file"></label>
+<label><?php echo $inc_panel_usuario[10]; ?>: jpg | jpeg | gif | png</label>
+<label><?php echo $inc_panel_usuario[11]; ?> 1 mb</label>
 <input type="hidden" name="subir_avatar">
-<button type="submit" class="btn">Subir</button>
+<button type="submit" class="btn"><?php echo $inc_panel_usuario[12]; ?></button>
 </form>
 <div class='modal-footer'>
-<button class='btn' data-dismiss='modal' aria-hidden='true'>Cerrar</button>
+<button class='btn' data-dismiss='modal' aria-hidden='true'><?php echo $inc_panel_usuario[13]; ?></button>
 </div>
 </div>
 </div>
@@ -88,12 +97,12 @@ echo "<a href='index.php?action=user&id_usuario=".$_SESSION["id"]."&query=mensaj
 <div class='moda-body'>
 <br><br>
 <form method='post'>
-<label><strong>Este paso es irreversible, ¿seguro que quieres continuar con la acción? </strong></label>
+<label><strong><?php echo $inc_panel_usuario[14]; ?> </strong></label>
 <input type="hidden" name="eliminar_cuenta">
-<button type="submit" class="btn btn-danger">Eliminar mi cuenta</button>
+<button type="submit" class="btn btn-danger"><?php echo $inc_panel_usuario[15]; ?></button>
 </form>
 <div class='modal-footer'>
-<button class='btn' data-dismiss='modal' aria-hidden='true'>Cerrar</button>
+<button class='btn' data-dismiss='modal' aria-hidden='true'><?php echo $inc_panel_usuario[16]; ?></button>
 </div>
 </div>
 </div>

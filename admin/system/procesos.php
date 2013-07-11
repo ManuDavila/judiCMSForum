@@ -1,5 +1,4 @@
 <?php
-include "procesos/detalles-foro.php";
 include "procesos/eliminar-indices.php";
 include "procesos/nuevo-indice.php";
 include "procesos/editar-indice.php";
@@ -25,5 +24,6 @@ include "procesos/htaccess.php";
 include "procesos/antirobots.php";
 include "procesos/form-antirobots.php";
 include "procesos/check-peligro.php";
+include "procesos/save-language.php";
 include "procesos/exit.php";
 ?>

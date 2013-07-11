@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST["nuevo_tema"]))
 {
-restringido();
-/*SEGURIDAD*/
+include_once "".$url_foro."system/restricted.php";
+
 if (empty($_COOKIE["tema"]))
 {
 setcookie("tema", 1, time()+3600);
@@ -16,7 +16,6 @@ if ($_COOKIE["tema"] > $max_temas)
 echo "NO ROBOTS";
 exit();
 }
-/*SEGURIDAD*/
 
 $id_categoria = addslashes(htmlspecialchars(strip_tags($_POST["categoria"])));
 $id_subcategoria = addslashes(htmlspecialchars(strip_tags($_POST["subcategoria"])));
@@ -30,8 +29,6 @@ $id_usuario = $_SESSION["id"];
 $fecha = date("Y-m-d");
 $hora = date("H:i:s");
 
-
-/*SEGURIDAD*/
 if (!preg_match("/^([0-9])+$/", $id_categoria))
 {
 header("location: index.php");
@@ -54,10 +51,7 @@ $url = "";
 }
 $filtrar = new InputFilter();
 $titulo = $filtrar->process($titulo);
-/*SEGURIDAD*/
 
-
-//Comprobar si el id_categoria existe
 $consulta = "SELECT id_categoria FROM categorias WHERE id_categoria=$id_categoria";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
@@ -66,12 +60,11 @@ if($fila == 0)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa, el tema no ha sido creado</strong>
+<strong>".$pro_nuevo_tema[0]."</strong>
 </div>";
 return;
 }
 
-//Comprobar si el id_subcategoria existe
 $consulta = "SELECT id_subcategoria, id_categoria FROM subcategorias WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
@@ -80,16 +73,15 @@ if($fila == 0)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Actividad sospechosa, el tema no ha sido creado</strong>
+<strong>".$pro_nuevo_tema[0]."</strong>
 </div>";
 return;
 }
-//Creamos el nuevo tema
+
 $consulta = "INSERT INTO temas(id_categoria, id_subcategoria, tema, mensaje, url, imagen, id_usuario, fecha, hora)";
 $consulta .= " VALUES('$id_categoria', '$id_subcategoria', '$titulo', '$comentario', '$url', '$imagen', '$id_usuario', '$fecha', '$hora')";
 $resultado = $conexion->query($consulta);
 
-//Ahora obtenemos el id del tema para incluirlo como mensaje en la tabla mensajes
 $consulta = "SELECT id_tema FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria AND ";
 $consulta .= "tema='$titulo' AND mensaje='$comentario' AND id_usuario=id_usuario AND fecha='$fecha' AND hora='$hora'";
 $resultado = $conexion->query($consulta);
@@ -97,13 +89,11 @@ $fila = $resultado->fetch_array();
 $id_tema = $fila["id_tema"];
 if ($fila > 0)
 {
-//Añadimos el tema como mensaje
 $consulta = "INSERT INTO mensajes(id_tema, id_categoria, id_subcategoria, tema, mensaje, url, imagen, id_usuario, fecha, hora, es_tema_principal)";
 $consulta .= " VALUES('$id_tema', '$id_categoria', '$id_subcategoria', '$titulo', '$comentario', '$url', '$imagen', '$id_usuario', '$fecha', '$hora', 'true')";
 $resultado = $conexion->query($consulta);
 }
 
-//Ahora obtenemos el último mensaje para incluirlo en la tabla subcategorias
 $consulta = "SELECT id_mensaje FROM mensajes WHERE id_tema=$id_tema AND tema='$titulo' AND mensaje='$comentario' AND ";
 $consulta .= " id_usuario=$id_usuario AND fecha='$fecha' AND hora='$hora'";
 $resultado = $conexion->query($consulta);
@@ -121,26 +111,26 @@ if ($notificacion_tema == "on")
 $fecha = date("d-m-Y");
 $hora = date("H:m:s");
 $ip = $_SERVER["REMOTE_ADDR"];
-$titulo = "Notificación de tema de usuario en $title_foro";
+$titulo = "".$pro_nuevo_tema[1]." $title_foro";
 $mensaje = "
-<b>Buenos días administrador del foro <a href='$url_foro'>$title_foro</a> ...</b>
+<b>".$pro_nuevo_tema[2]." <a href='$url_foro'>$title_foro</a> ...</b>
 <br><br>
-Nuevo tema de usuario:
+".$pro_nuevo_tema[3].":
 <br><br>
-Fecha: $fecha<br>
-Hora: $hora<br>
-id de usuario: $id_usuario<br>
-Nick de usuario: ".$_SESSION["nick"]."<br>
+".$pro_nuevo_tema[4].": $fecha<br>
+".$pro_nuevo_tema[5].": $hora<br>
+".$pro_nuevo_tema[6].": $id_usuario<br>
+".$pro_nuevo_tema[7].": ".$_SESSION["nick"]."<br>
 Whois: <a href='http://whois.arin.net/rest/ip/$ip'>http://whois.arin.net/rest/ip/$ip</a><br>
-Dirección del nuevo tema: <a href='".$url_foro."index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema'>VER TEMA</a>
+".$pro_nuevo_tema[8].": <a href='".$url_foro."index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema'>".$pro_nuevo_tema[9]."</a>
 <br><br>
-Comentario:
+".$pro_nuevo_tema[10].":
 <br><br>
 <i>$comentario</i>
 <br><br>
-Puedes tener más información sobre este usuario introduciendo su nick o id de usuario en la búsqueda de usuarios del <a href='".$url_foro."admin/'>panel de administración</a>.
+".$pro_nuevo_tema[11]." <a href='".$url_foro."admin/'>".$pro_nuevo_tema[12]."</a>.
 <br><br>
-Saludos.
+".$pro_nuevo_tema[13].".
 ";
 $mail = new PHPMailer();
 $mail->Host = $url_foro;
@@ -153,7 +143,6 @@ $mail->IsHTML(true);
 $mail->Send();
 }
 /* ADMINISTRADOR */
-
 header("location: index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema");
 }
 }

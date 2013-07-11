@@ -1,24 +1,21 @@
 <?php
 if (isset($_POST["subir_avatar"]))
 {
-restringido();
+include_once "".$url_foro."system/restricted.php";
 
 $nombre = $_FILES['file']['name'];
 $rand = rand(10000, 99999);
 $cad = $rand."-".$nombre;
-// Fin de la creacion de la cadena aletoria
-$tamano = $_FILES [ 'file' ][ 'size' ]; // Leemos el tamaño del fichero
-$tamano_max= 1000000; // Tamaño maximo permitido
-
-if( $tamano < $tamano_max){ // Comprobamos el tamaño 
-$destino = 'imagenes/avatares' ; // Carpeta donde se guardara
-$sep=explode('image/',$_FILES["file"]["type"]); // Separamos image/
-$tipo=$sep[1]; // Optenemos el tipo de imagen que es
-
+$tamano = $_FILES [ 'file' ][ 'size' ]; 
+$tamano_max= 1000000; 
+if( $tamano < $tamano_max){ 
+$destino = 'imagenes/avatares' ; 
+$sep=explode('image/',$_FILES["file"]["type"]); 
+$tipo=$sep[1]; 
 if($tipo == "gif" || $tipo == "jpeg" || $tipo == "jpg" || $tipo == "png" || $tipo == "pjpeg" || $tipo == "x-png" || $_FILES['file']['tmp_name']=="")
 { 
-$ruta = $destino . '/' .$cad; //Ruta donde se guarda el archivo
-move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $ruta);  // Subimos el archivo
+$ruta = $destino . '/' .$cad; 
+move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $ruta);
 
 $consulta = "SELECT avatar FROM usuarios WHERE id=".$_SESSION["id"]."";
 $resultado = $conexion->query($consulta);
@@ -36,7 +33,7 @@ $resultado = $conexion->query($consulta);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Avatar cambiado con éxito</strong>
+<strong>".$pro_subir_avatar[0]."</strong>
 </div>";
 }
 else
@@ -44,7 +41,7 @@ else
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>El tipo de archivo no es de los permitidos</strong>
+<strong>".$pro_subir_avatar[1]."</strong>
 </div>";
 unlink($ruta);
 return;
@@ -54,7 +51,7 @@ if ($_FILES['file']['tmp_name']=="")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Archivo desconocido</strong>
+<strong>".$pro_subir_avatar[2]."</strong>
 </div>";
 unlink($ruta);
 return;
@@ -65,7 +62,7 @@ if ($tamano > $tamano_max)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>La imagen supera el máximo permitido</strong>
+<strong>".$pro_subir_avatar[3]."</strong>
 </div>";
 return;
 }

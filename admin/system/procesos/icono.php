@@ -1,14 +1,14 @@
 <?php
 if (isset($_POST["icono"]))
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $nombre = $_FILES['file']['name'];
 if($nombre == "")
 {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>No has seleccionado ningún icono</strong>
+<strong>".$pro_icono_adm[0]."</strong>
 </div>";
 return;
 }
@@ -27,7 +27,7 @@ if ($tipo == "")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Tipo de archivo desconocido</strong>
+<strong>".$pro_icono_adm[1]."</strong>
 </div>";
 return;
 }
@@ -42,7 +42,7 @@ $resultado_ico = $conexion->query($consulta_ico);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Tarea realizada con éxito</strong>
+<strong>".$pro_icono_adm[2]."</strong>
 </div>";
 }
 
@@ -50,7 +50,7 @@ else {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>El tipo de archivo no es de los permitidos</strong>
+<strong>".$pro_icono_adm[3]."</strong>
 </div>";
 return;
 }
@@ -60,7 +60,7 @@ else {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>El archivo supera máximo permitido</strong>
+<strong>".$pro_icono_adm[4]."</strong>
 </div>";
 return;
 }
@@ -70,7 +70,7 @@ if ($_FILES['file']['tmp_name']=="")
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Ha ocurrido un error grave</strong>
+<strong>".$pro_icono_adm[5]."</strong>
 </div>";
 unlink($ruta);
 return;

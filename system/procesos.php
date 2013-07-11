@@ -1,7 +1,5 @@
 <?php
-include "procesos/detalles-foro.php";
 include "procesos/antirobots.php";
-include "procesos/get_string_mes.php";
 include "procesos/iniciar-sesion.php";
 include "procesos/exit.php";
 include "procesos/registrar-usuario.php";

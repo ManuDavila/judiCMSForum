@@ -1,7 +1,8 @@
 <?php
-restringido();
 if ($_GET["action"] == "todos-usuarios")
 {
+include_once "".$url_foro."admin/system/restricted.php";
+
 $intervalo_inicial = $_GET["intervalo_inicial"];
 $intervalo_final = $_GET["intervalo_final"];
 $orden = $_GET["orden"];
@@ -15,7 +16,7 @@ $nicks .= '"'.$fila_nicks["nick"].'",';
 $nicks .= '""';
 
 ?>
-<h3>Usuarios del foro</h3>
+<h3><?php echo $inc_todos_usuarios_adm[0]; ?></h3>
 
 <?php
 $consulta_total = "SELECT COUNT(id) AS total_usuarios FROM usuarios";
@@ -23,41 +24,41 @@ $resultado_total = $conexion -> query ($consulta_total);
 $fila_total = $resultado_total -> fetch_array();
 $total_usuarios = $fila_total["total_usuarios"];
 ?>
-<h4>Total de usuarios registrados en el foro: <?php echo $total_usuarios; ?></h4>
+<h4><?php echo $inc_todos_usuarios_adm[1]; ?>: <?php echo $total_usuarios; ?></h4>
 <br>
 <form method="get" id="form_id_usuario" class="form-search">
 <input type="hidden" name="action" value="usuario">
-Buscar por id de usuario: <input type="text" name="id_usuario" id="id_usuario" class="input-small" PlaceHolder="id de usuario">
-<button type="button" id="btn_id_usuario" class="btn">Buscar</button> <label id="e_id_usuario"></label>
+<?php echo $inc_todos_usuarios_adm[2]; ?>: <input type="text" name="id_usuario" id="id_usuario" class="input-small" PlaceHolder="<?php echo $inc_todos_usuarios_adm[2]; ?>">
+<button type="button" id="btn_id_usuario" class="btn"><?php echo $inc_todos_usuarios_adm[3]; ?></button> <label id="e_id_usuario"></label>
 </form>
 <form method="post" class="form-search">
-Buscar por nick de usuario: 
-<input type="text" name="nick_usuario" id="nick_usuario" PlaceHolder="Nick de usuario" data-provide="typeahead" data-source='[<?php echo $nicks; ?>]' data-items="8">
-<button type="submit" id="btn_nick_usuario" class="btn">Buscar</button> <label id="e_nick_usuario"></label>
+<?php echo $inc_todos_usuarios_adm[4]; ?>: 
+<input type="text" name="nick_usuario" id="nick_usuario" PlaceHolder="<?php echo $inc_todos_usuarios_adm[4]; ?>" data-provide="typeahead" data-source='[<?php echo $nicks; ?>]' data-items="8">
+<button type="submit" id="btn_nick_usuario" class="btn"><?php echo $inc_todos_usuarios_adm[5]; ?></button> <label id="e_nick_usuario"></label>
 </form>
 
 <form method="get" class="form-search">
 <input type="hidden" name="action" value="todos-usuarios">
-Buscar todos los usuarios: 
+<?php echo $inc_todos_usuarios_adm[6]; ?>: 
  Asc. <input type="radio" name="orden" value="ASC" <?php if($orden=="ASC"){echo "checked";} ?>> 
  Desc. <input type="radio" name="orden" value="DESC" <?php if($orden=="DESC"){echo "checked";} ?>>
-<button type="submit" class="btn">Buscar</button>
+<button type="submit" class="btn"><?php echo $inc_todos_usuarios_adm[3]; ?></button>
 </form>
 
     <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Acciones
+    <?php echo $inc_todos_usuarios_adm[7]; ?>
     <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-	<li><a style="cursor: pointer;" id="eliminar_usuarios">Eliminar</a></li>
-	<li><a style="cursor: pointer;" id="bloquearIP_usuarios">Bloquear IP</a></li>
-	<li><a style="cursor: pointer;" id="enviarEmail_usuarios">Enviar Email</a></li>
+	<li><a style="cursor: pointer;" id="eliminar_usuarios"><?php echo $inc_todos_usuarios_adm[8]; ?></a></li>
+	<li><a style="cursor: pointer;" id="bloquearIP_usuarios"><?php echo $inc_todos_usuarios_adm[9]; ?></a></li>
+	<li><a style="cursor: pointer;" id="enviarEmail_usuarios"><?php echo $inc_todos_usuarios_adm[10]; ?></a></li>
     </ul>
     </div>
 
-	<button type="button" id="btn_marcar" onclick="marcar()" class="btn">Marcar toda la lista</button>
-	<button type="button" id="btn_desmarcar" onclick="desmarcar()" class="btn">Desmarcar</button>
+	<button type="button" id="btn_marcar" onclick="marcar()" class="btn"><?php echo $inc_todos_usuarios_adm[11]; ?></button>
+	<button type="button" id="btn_desmarcar" onclick="desmarcar()" class="btn"><?php echo $inc_todos_usuarios_adm[12]; ?></button>
 
 	
     <form id="form_eliminar_usuarios" method="post">
@@ -70,17 +71,17 @@ Buscar todos los usuarios:
 <div id="box_usuarios">
  <table class="table table-bordered" style="width: 85%; font-size: 10px;">
 <tr class="info">
-<td><strong>id</strong></td>
-<td><strong>Email</strong></td>
-<td><strong>Nombre</strong></td>
-<td><strong>Apellidos</strong></td>
-<td><strong>Nick</strong></td>
-<td><strong>Activado</strong></td>
-<td><strong>IP</strong></td>
-<td><strong>Fecha de Registro</strong></td>
-<td><strong>Mensajes</strong></td>
-<td><strong>Temas</strong></td>
-<td><strong>Acciones</strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[13]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[14]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[15]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[16]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[17]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[18]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[19]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[20]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[21]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[22]; ?></strong></td>
+<td><strong><?php echo $inc_todos_usuarios_adm[23]; ?></strong></td>
 </tr>
  <?php
  //primero se hace la llamada al script
@@ -168,27 +169,27 @@ $paginacion->paginas("paginacion", "&action=todos-usuarios&orden=$orden");
 </div>
 
 <div id="box_email">
-<button type="button" class="btn" id="importar_emails"><span class="icon-plus"></span> Importar todos los emails</button> 
-<button type="button" class="btn" id="limpiar_emails"><span class="icon-minus"></span> Limpiar destinatarios</button>
-<button type="button" class="btn" id="cerrar_emails"><span class=" icon-remove-circle"></span> Cerrar</button>
-<button type="button" id="ayuda_emails" data-toggle="tooltip" data-placement="bottom" title="Los emails son enviados como copia oculta para preservar la identidad de los usuarios" class="btn"><span class="icon-info-sign"></span> Info</button>
+<button type="button" class="btn" id="importar_emails"><span class="icon-plus"></span> <?php echo $inc_todos_usuarios_adm[24]; ?></button> 
+<button type="button" class="btn" id="limpiar_emails"><span class="icon-minus"></span> <?php echo $inc_todos_usuarios_adm[25]; ?></button>
+<button type="button" class="btn" id="cerrar_emails"><span class=" icon-remove-circle"></span> <?php echo $inc_todos_usuarios_adm[26]; ?></button>
+<button type="button" id="ayuda_emails" data-toggle="tooltip" data-placement="bottom" title="<?php echo $usuarios_adm[33]; ?>" class="btn"><span class="icon-info-sign"></span> Info</button>
 <br><br>
 <form method='post' enctype="multipart/form-data">
-<label><strong>Enviar Email/s - Puedes usar tags HTML</strong></label>
+<label><strong><?php echo $inc_todos_usuarios_adm[27]; ?></strong></label>
 <table>
 <tr>
-<td style="text-align: right;">Para:</td><td style="width: 80%;"><input type='text' name='destinatarios' id='destinatarios' style='width: 80%;'></td>
+<td style="text-align: right;"><?php echo $inc_todos_usuarios_adm[28]; ?>:</td><td style="width: 80%;"><input type='text' name='destinatarios' id='destinatarios' style='width: 80%;'></td>
 </tr>
 <tr>
-<td style="text-align: right;">Asunto:</td><td><input type='text' name='asunto' id='asunto' placeholder='Asunto' style='width: 80%;'></td>
+<td style="text-align: right;"><?php echo $inc_todos_usuarios_adm[29]; ?>:</td><td><input type='text' name='asunto' id='asunto' placeholder='<?php echo $inc_todos_usuarios_adm[29]; ?>' style='width: 80%;'></td>
 </tr>
 <tr>
-<td style="text-align: right;">Adjuntar archivo:</td><td><input type='file' name='archivo1' id='archivo1'></td>
+<td style="text-align: right;"><?php echo $inc_todos_usuarios_adm[30]; ?>:</td><td><input type='file' name='archivo1' id='archivo1'></td>
 </tr>
 </table>
 <br>
-<textarea rows='8' style="width: 90%; font-family: 'Lucida Console'; font-size: 10px;" placeholder='Mensaje' id='mensaje' name='mensaje'></textarea>
-<button type='submit' class='btn' style='font-size: 18px;'>Enviar Email</button>
+<textarea rows='8' style="width: 90%; font-family: 'Lucida Console'; font-size: 10px;" placeholder='<?php echo $inc_todos_usuarios_adm[31]; ?>' id='mensaje' name='mensaje'></textarea>
+<button type='submit' class='btn' style='font-size: 18px;'><?php echo $inc_todos_usuarios_adm[32]; ?></button>
 <input type='hidden' id='todos_emails' value="<?php echo $todos_emails; ?>">
 </form>
 </div>

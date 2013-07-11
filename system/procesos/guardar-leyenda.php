@@ -1,14 +1,14 @@
 <?php
 if (isset($_POST["guardar_leyenda"]))
 {
-restringido();
+include_once "".$url_foro."system/restricted.php";
 $leyenda = addslashes(htmlspecialchars($_POST["guardar_leyenda"]));
 if (strlen($leyenda) > 50)
 {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>La leyenda supera el máximo permitido, 50 caracteres</strong>
+<strong>".$pro_guardar_leyenda[0]."</strong>
 </div>";
 return;
 }
@@ -17,7 +17,7 @@ $resultado = $conexion ->query($consulta);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Leyenda cambiada con éxito</strong>
+<strong>".$pro_guardar_leyenda[1]."</strong>
 </div>";
 }
 ?>

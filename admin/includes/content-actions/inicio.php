@@ -1,9 +1,9 @@
 <?php 
 if($_GET["action"] == "")
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 ?>
-<h4>Algunas estadísticas del foro ...</h4>
+<h4><?php echo $inc_inicio_adm[0]; ?></h4>
 <?php
 $consulta = "SELECT COUNT(id_categoria) AS total_indices FROM categorias";
 $resultado = $conexion -> query($consulta);
@@ -38,29 +38,27 @@ $total_visitas = $fila["total_visitas"];
 
 <table class="table table-bordered" style="width: 50%;">
 <tr>
-<td>Total de Índices:</td><td><span class="label label-info"><?php echo $total_indices; ?></span></td>
+<td><?php echo $inc_inicio_adm[1]; ?>:</td><td><span class="label label-info"><?php echo $total_indices; ?></span></td>
 </tr>
 <tr>
-<td>Total de Subíndices:</td><td><span class="label label-info"><?php echo $total_subindices; ?></span></td>
+<td><?php echo $inc_inicio_adm[2]; ?>:</td><td><span class="label label-info"><?php echo $total_subindices; ?></span></td>
 </tr>
 <tr>
-<td>Total de Temas:</td><td><span class="label label-info"><?php echo $total_temas; ?></span></td>
+<td><?php echo $inc_inicio_adm[3]; ?>:</td><td><span class="label label-info"><?php echo $total_temas; ?></span></td>
 </tr>
 <tr>
-<td>Total de Mensajes:</td><td><span class="label label-info"><?php echo $total_mensajes; ?></span></td>
+<td><?php echo $inc_inicio_adm[4]; ?>:</td><td><span class="label label-info"><?php echo $total_mensajes; ?></span></td>
 </tr>
 <tr>
-<td>Total de Usuarios:</td><td><span class="label label-info"><?php echo $total_usuarios; ?></span></td>
+<td><?php echo $inc_inicio_adm[5]; ?>:</td><td><span class="label label-info"><?php echo $total_usuarios; ?></span></td>
 </tr>
 <tr>
-<td>Total de páginas vistas:</td><td><span class="label label-info"><?php echo $total_visitas; ?></span></td>
+<td><?php echo $inc_inicio_adm[6]; ?>:</td><td><span class="label label-info"><?php echo $total_visitas; ?></span></td>
 </tr>
 </table>
-
-Para descargar nuevos temas para tu foro ve a la siguiente dirección ... <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
+<?php echo $inc_inicio_adm[7]; ?>
 <br>
-También puedes colaborar o participar ayudando a mejorar <strong>JUDI CMS FORUM</strong>, enviando reportes o mejoras en el <a href="http://www.judicms.com/" target="_blank">foro oficial</a>
-
+<?php echo $inc_inicio_adm[8]; ?>
 <?php
 }
 ?>

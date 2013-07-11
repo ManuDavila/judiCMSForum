@@ -1,17 +1,20 @@
 <?php 
 if ($_GET["action"] == "temas" && !$_GET["id_usuario"])
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 ?>
-<h3>Temas del foro</h3>
-<div class="alert alert-info">Tenga en cuenta que al eliminar un tema también se eliminarán todos los mensajes asociados al tema.</div>
+<h3><?php echo $inc_temas_adm[0]; ?></h3>
+<div class="alert alert-info">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+<?php echo $inc_temas_adm[1]; ?>
+</div>
 <ul class="alert alert-info" style="width: 20%;">
-<li>1º - Seleccione el índice</li>
-<li>2º - Seleccione el subíndice</li>
+<li><?php echo $inc_temas_adm[2]; ?></li>
+<li><?php echo $inc_temas_adm[3]; ?></li>
 </ul>
     <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Seleccionar índice:
+    <?php echo $inc_temas_adm[4]; ?>:
     <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
@@ -35,7 +38,7 @@ $id_categoria = $_GET["id_categoria"];
 
     <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Seleccionar subíndice:
+    <?php echo $inc_temas_adm[5]; ?>:
     <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
@@ -62,16 +65,16 @@ $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
 $subcategoria = $fila["subcategoria"];
 ?>
-<h3>Temas del subíndice: <?php echo $subcategoria; ?></h3>
+<h3><?php echo $inc_temas_adm[6]; ?>: <?php echo $subcategoria; ?></h3>
     <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Acciones
+    <?php echo $inc_temas_adm[7]; ?>
     <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-	<li><a style="cursor: pointer;" id="eliminar_temas">Eliminar</a></li>
-	<li><a style="cursor: pointer;" id="cerrar_temas">Cerrar comentarios</a></li>
-	<li><a style="cursor: pointer;" id="abrir_temas">Abrir comentarios</a></li>
+	<li><a style="cursor: pointer;" id="eliminar_temas"><?php echo $inc_temas_adm[8]; ?></a></li>
+	<li><a style="cursor: pointer;" id="cerrar_temas"><?php echo $inc_temas_adm[9]; ?></a></li>
+	<li><a style="cursor: pointer;" id="abrir_temas"><?php echo $inc_temas_adm[10]; ?></a></li>
     </ul>
     </div>
     <form id="form_eliminar_temas" method="post">
@@ -88,21 +91,20 @@ $subcategoria = $fila["subcategoria"];
 <form method="post" id="form">
     <table class="table table-bordered" style="width: 85%;">
    <tr class="info">
-   <td><strong>ID</strong></td>
-   <td><strong>TEMAS</strong></td>
-   <td><strong>ESTADO</strong></td>
-   <td><strong>AUTOR<strong></td>
-   <td><strong>MENSAJES</strong></td>
-   <td><strong>ACCIONES</strong></td>
+   <td><strong><?php echo $inc_temas_adm[11]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_adm[12]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_adm[13]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_adm[14]; ?><strong></td>
+   <td><strong><?php echo $inc_temas_adm[15]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_adm[16]; ?></strong></td>
    </tr>
   <?php
-  // Esto es para el final
-//primero se hace la llamada al script
+
 require("system/paginacion/paginacion.php");
-// paginacion(conexion a la base de datos);
+
 $paginacion = new paginacion($conexion);
 $paginacion->contar_filas("SELECT COUNT(id_tema) FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria"); 
-//tipo_resultados(numero de páginas, número de filas por página);
+
 $paginacion->tipo_resultados(3, 10);
   
   $consulta = "SELECT * FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria ORDER BY id_tema DESC LIMIT ".$_empezar_de_fila.", ".$_maximo_resultados_pagina."";

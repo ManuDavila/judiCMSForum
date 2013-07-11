@@ -15,7 +15,7 @@ $meta_keywords = addslashes($keywords_foro);
 $meta_robots = "all";
 break;
 
-case "categoria": //categoria
+case "categoria":
 $consulta_meta = "SELECT * FROM categorias WHERE id_categoria=".$_GET["categoria"]."";
 $resultado_meta = $conexion->query($consulta_meta);
 $fila_meta = $resultado_meta->fetch_array();
@@ -25,7 +25,7 @@ $meta_keywords = addslashes($fila_meta["keywords"]);
 $meta_robots = "all";
 break;
 
-case "temas": //Subcategoria
+case "temas":
 $consulta_meta = "SELECT * FROM subcategorias WHERE id_subcategoria=".$_GET["subcategoria"]."";
 $resultado_meta = $conexion->query($consulta_meta);
 $fila_meta = $resultado_meta->fetch_array();
@@ -51,57 +51,57 @@ $meta_robots = "all";
 break;
 
 case "registro":
-$meta_title = "Regístrate en el foro";
-$meta_description = "Regístrate en el foro";
+$meta_title = $inc_head[0];
+$meta_description = $inc_head[0];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "activar":
-$meta_title = "Activar usuario";
-$meta_description = "Activar usuario";
+$meta_title = $inc_head[1];
+$meta_description = $inc_head[1];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "recuperar-1":
-$meta_title = "Recuperar password";
-$meta_description = "Recuperar password";
+$meta_title = $inc_head[2];
+$meta_description = $inc_head[2];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "recuperar-2":
-$meta_title = "Recuperar password";
-$meta_description = "Recuperar password";
+$meta_title = $inc_head[2];
+$meta_description = $inc_head[2];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "ayuda":
-$meta_title = "Sección de ayuda del foro";
-$meta_description = "Sección de ayuda del foro";
+$meta_title = $inc_head[3];
+$meta_description = $inc_head[3];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "contacto":
-$meta_title = "Contacto";
-$meta_description = "Contacto";
+$meta_title = $inc_head[4];
+$meta_description = $inc_head[4];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "normas":
-$meta_title = "Normas del foro";
-$meta_description = "Normas del foro";
+$meta_title = $inc_head[5];
+$meta_description = $inc_head[5];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
 
 case "panel-usuario":
-$meta_title = "Panel de usuario";
-$meta_description = "Panel de usuario";
+$meta_title = $inc_head[6];
+$meta_description = $inc_head[6];
 $meta_keywords = "";
 $meta_robots = "noindex, nofollow";
 break;
@@ -120,7 +120,7 @@ break;
 	<meta name="title" content="<?php echo $meta_title; ?>">
 	<meta name="description" content="<?php echo $meta_description; ?>">
 	<meta name="keywords" content="<?php echo $meta_keywords; ?>">
-	<meta name="language" content="spanish">
+	<meta name="language" content="<?php echo $inc_head[7]; ?>">
 	<meta name="robot" content="<?php echo $meta_robots; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -129,4 +129,4 @@ break;
 	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 	<script src="bootstrap/js/jquery-1.10.1.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/javascript.js"></script>
+	<script src="bootstrap/js/<?php echo $inc_head[8]; ?>"></script>

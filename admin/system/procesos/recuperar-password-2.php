@@ -42,7 +42,7 @@ $resultado = $conexion->query($consulta);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Enhorabuena, password cambiado con éxito, ya puedes iniciar sesión</strong>
+<strong>".$pro_recuperar_password_2_adm[0]."</strong>
 </div>";
 }
 else
@@ -50,7 +50,7 @@ else
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Ha ocurrido un error, comprueba que los datos introducidos son los correctos</strong>
+<strong>".$pro_recuperar_password_2_adm[1]."</strong>
 </div>";
 }
 }

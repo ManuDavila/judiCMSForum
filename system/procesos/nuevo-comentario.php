@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST["nuevo_comentario"]))
 {
-restringido();
-/*SEGURIDAD*/
+include_once "".$url_foro."system/restricted.php";
+
 if (empty($_COOKIE["comentario"]))
 {
 setcookie("comentario", 1, time()+3600);
@@ -16,7 +16,7 @@ if ($_COOKIE["comentario"] > $max_mensajes)
 echo "NO ROBOTS";
 exit();
 }
-/*SEGURIDAD*/
+
 $id_categoria = addslashes(htmlspecialchars(strip_tags($_POST["categoriaC"])));
 $id_subcategoria = addslashes(htmlspecialchars(strip_tags($_POST["subcategoriaC"])));
 $id_tema = addslashes(htmlspecialchars(strip_tags($_POST["tituloC"])));
@@ -29,7 +29,6 @@ $id_usuario = $_SESSION["id"];
 $fecha = date("Y-m-d");
 $hora = date("H:i:s");
 
-/*SEGURIDAD*/
 if (!preg_match("/^([0-9])+$/", $id_categoria))
 {
 header("location: index.php");
@@ -55,11 +54,11 @@ $url = "";
 }
 $filtrar = new InputFilter();
 $titulo = $filtrar->process($id_tema);
-/*SEGURIDAD*/
-//Comprobar si el id_categoria existe
+
 $consulta = "SELECT id_categoria FROM categorias WHERE id_categoria=$id_categoria";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
+
 if($fila == 0)
 {
 $msg_box = "
@@ -69,10 +68,11 @@ $msg_box = "
 </div>";
 return;
 }
-//Comprobar si el id_subcategoria existe
+
 $consulta = "SELECT id_subcategoria, id_categoria FROM subcategorias WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
+
 if($fila == 0)
 {
 $msg_box = "
@@ -82,7 +82,7 @@ $msg_box = "
 </div>";
 return;
 }
-//Ahora obtenemos el id del tema para incluirlo como mensaje en la tabla mensajes
+
 $consulta = "SELECT tema FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria AND ";
 $consulta .= "id_tema=$id_tema AND tema_cerrado='false'";
 $resultado = $conexion->query($consulta);
@@ -90,13 +90,12 @@ $fila = $resultado->fetch_array();
 $titulo = $fila["tema"];
 if ($fila > 0)
 {
-//Añadimos el tema como mensaje
+
 $consulta = "INSERT INTO mensajes(id_tema, id_subcategoria, id_categoria, tema, mensaje, url, imagen, id_usuario, fecha, hora, es_tema_principal)";
 $consulta .= " VALUES('$id_tema', $id_subcategoria, '$id_categoria', '$titulo', '$comentario', '$url', '$imagen', '$id_usuario', '$fecha', '$hora', 'false')";
 $resultado = $conexion->query($consulta);
 }
 
-//Ahora obtenemos el último mensaje para incluirlo en la tabla subcategorias
 $consulta = "SELECT id_mensaje FROM mensajes WHERE id_tema=$id_tema AND tema='$titulo' AND mensaje='$comentario' AND ";
 $consulta .= " id_usuario=$id_usuario AND fecha='$fecha' AND hora='$hora'";
 $resultado = $conexion->query($consulta);
@@ -114,26 +113,26 @@ if ($notificacion_mensaje == "on")
 $fecha = date("d-m-Y");
 $hora = date("H:m:s");
 $ip = $_SERVER["REMOTE_ADDR"];
-$titulo = "Notificación de comentario de usuario en $title_foro";
+$titulo = "".$pro_nuevo_comentario[0]." $title_foro";
 $mensaje = "
-<b>Buenos días administrador del foro <a href='$url_foro'>$title_foro</a> ...</b>
+<b>".$pro_nuevo_comentario[1]." <a href='$url_foro'>$title_foro</a> ...</b>
 <br><br>
-Nuevo comentario de usuario:
+".$pro_nuevo_comentario[2].":
 <br><br>
-Fecha: $fecha<br>
-Hora: $hora<br>
-id de usuario: $id_usuario<br>
-Nick de usuario: ".$_SESSION["nick"]."<br>
+".$pro_nuevo_comentario[3].": $fecha<br>
+".$pro_nuevo_comentario[4].": $hora<br>
+".$pro_nuevo_comentario[5].": $id_usuario<br>
+".$pro_nuevo_comentario[6].": ".$_SESSION["nick"]."<br>
 Whois: <a href='http://whois.arin.net/rest/ip/$ip'>http://whois.arin.net/rest/ip/$ip</a><br>
-Dirección del tema al que pertenece este comentario: <a href='".$url_foro."index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema'>VER TEMA</a>
+".$pro_nuevo_comentario[7].": <a href='".$url_foro."index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema'>VER TEMA</a>
 <br><br>
-Comentario:
+".$pro_nuevo_comentario[8].":
 <br><br>
 <i>$comentario</i>
 <br><br>
-Puedes tener más información sobre este usuario introduciendo su nick o id de usuario en la búsqueda de usuarios del <a href='".$url_foro."admin/'>panel de administración</a>.
+".$pro_nuevo_comentario[9]." <a href='".$url_foro."admin/'>".$pro_nuevo_comentario[10]."</a>.
 <br><br>
-Saludos.
+".$pro_nuevo_comentario[18].".
 ";
 $mail = new PHPMailer();
 $mail->Host = $url_foro;
@@ -162,21 +161,21 @@ $fila_usuario = $resultado_usuario -> fetch_array();
 $email = $fila_usuario["email"];
 $nombre = $fila_usuario["nombre"];
 $nick = $_SESSION["nick"];
-$titulo = "Nuevo comentario en una de tus charlas - $title_foro";
+$titulo = "".$pro_nuevo_comentario[11]." - $title_foro";
 $mensaje = "
-<b>Buenos días $nombre. Bienvenido a <a href='$url_foro'>$title_foro</a> ...</b>
+<b>".$pro_nuevo_comentario[12]." $nombre. ".$pro_nuevo_comentario[13]." <a href='$url_foro'>$title_foro</a> ...</b>
 <br><br>
-Nuevo comentario de $nick en una de tus charlas:
+".$pro_nuevo_comentario[14]." $nick ".$pro_nuevo_comentario[15].":
 <br><br>
-Fecha: $fecha<br>
-Hora: $hora<br>
-Puedes verlo en la siguiente dirección: <a href='".$url_foro."index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema'>Ir al Foro</a>
+".$pro_nuevo_comentario[3].": $fecha<br>
+".$pro_nuevo_comentario[4].": $hora<br>
+".$pro_nuevo_comentario[16].": <a href='".$url_foro."index.php?action=tema&categoria=$id_categoria&subcategoria=$id_subcategoria&tema=$id_tema'>".$pro_nuevo_comentario[17]."</a>
 <br><br>
 Comentario:
 <br><br>
 <i>$comentario</i>
 <br><br>
-Saludos.
+".$pro_nuevo_comentario[18].".
 ";
 $mail = new PHPMailer();
 $mail->Host = $url_foro;

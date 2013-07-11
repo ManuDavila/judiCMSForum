@@ -7,7 +7,6 @@ if($_GET["query"] == "verusuario")
 <td>
 <?php
 $id_usuario = $_GET["id_usuario"];
-//Evitar inyección sql
 if (!preg_match("/^([0-9])+$/", $id_usuario))
 {
 header("location: index.php");
@@ -22,26 +21,33 @@ $apellido_2 = $fila["apellido_2"];
 $avatar = $fila["avatar"];
 $leyenda = $fila["leyenda"];
 if ($leyenda != ""){
-$leyenda = "Leyenda: <span class='label label-inverse'>".$fila["leyenda"]."</span>";
+$leyenda = "<span class='label label-inverse'>".$fila["leyenda"]."</span>";
 }
 $fecha = $fila["fecha_registro"];
 $fecha = explode("-", $fecha);
-$fecha = $fecha[2]." de ".get_string_mes($fecha[1])." del ".$fecha[0];
+if ($language == "es")
+{
+$fecha = $fecha[2]." del ".get_string_mes($fecha[1])." del ".$fecha[0];
+}
+if ($language == "en")
+{
+$fecha = "".get_string_mes($fecha[1])." ".$fecha[2].", ".$fecha[0]."";
+}
 ?>
 <img src="<?php echo $avatar; ?>" class="img-rounded" style="width: 160px; height: 160px;">
 </td>
 <td style="padding-left: 15px;">
-Usuario: <a href="index.php?action=user&id_usuario=<?php echo $_GET["id_usuario"]; ?>&query=verusuario"><strong><?php echo $nombre; ?></strong></a>
+<?php echo $inc_usuario[2]; ?>: <a href="index.php?action=user&id_usuario=<?php echo $_GET["id_usuario"]; ?>&query=verusuario"><strong><?php echo $nombre; ?></strong></a>
 <br>
 <?php 
 
 ?>
-Registrado el <?php echo $fecha; ?>
+<?php echo $inc_usuario[3]; ?> <?php echo $fecha; ?>
 </td>
 <td style="padding-left: 10px;">
 <table>
 <tr>
-<td>TEMAS</td>
+<td><?php echo $inc_usuario[4]; ?></td>
 <td>
 <?php 
 $consulta_temas = "SELECT COUNT(id_tema) AS total_temas FROM temas WHERE id_usuario=".$id_usuario."";
@@ -52,7 +58,7 @@ echo "<a href='index.php?action=user&id_usuario=".$id_usuario."&query=temas' cla
 ?>
 </td>
 </tr>
-<tr><td>MENSAJES</td>
+<tr><td><?php echo $inc_usuario[5]; ?></td>
 <td>
 <?php
 $consulta_mensajes = "SELECT COUNT(id_mensaje) AS total_mensajes FROM mensajes WHERE id_usuario=".$id_usuario." AND es_tema_principal='false'";

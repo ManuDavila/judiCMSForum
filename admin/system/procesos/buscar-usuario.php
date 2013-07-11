@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["nick_usuario"]))
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $nick_usuario = addslashes(htmlspecialchars(strip_tags($_POST["nick_usuario"])));
 $consulta = "SELECT id FROM usuarios WHERE nick='$nick_usuario'";
 $resultado = $conexion -> query($consulta);

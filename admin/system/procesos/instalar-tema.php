@@ -1,13 +1,13 @@
 <?php
 if(isset($_POST["instalar_tema"]))
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 if ($_POST["instalar_tema"] == "")
 {
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>No has especificado la url del tema</strong>
+<strong>".$pro_instalar_tema_adm[0]."</strong>
 </div>";
 return;
 }
@@ -16,7 +16,7 @@ if (!preg_match("/^http:\/\/www\.judicms\.com/", $_POST["instalar_tema"]))
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>url de descarga inválida</strong>
+<strong>".$pro_instalar_tema_adm[1]."</strong>
 </div>";
 return;
 }
@@ -34,7 +34,7 @@ if(!$new_css)
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>URL inválida</strong>
+<strong>".$pro_instalar_tema_adm[2]."</strong>
 </div>";
 return;
 }
@@ -50,7 +50,7 @@ fclose($archivo);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Tema $carpeta instalado con éxito</strong>
+<strong>Theme $carpeta ".$pro_instalar_tema_adm[3]."</strong>
 </div>";
 }
 ?>

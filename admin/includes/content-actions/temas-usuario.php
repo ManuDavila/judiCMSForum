@@ -1,19 +1,19 @@
 <?php
 if ($_GET["action"] == "temas" && $_GET["id_usuario"])
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $id_usuario = $_GET["id_usuario"];
 ?>
-<h3>Temas de usuario</h3>
+<h3><?php echo $inc_temas_usuario_adm[0]; ?></h3>
     <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Acciones
+    <?php echo $inc_temas_usuario_adm[1]; ?>
     <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-	<li><a style="cursor: pointer;" id="eliminar_temas">Eliminar</a></li>
-	<li><a style="cursor: pointer;" id="cerrar_temas">Cerrar comentarios</a></li>
-	<li><a style="cursor: pointer;" id="abrir_temas">Abrir comentarios</a></li>
+	<li><a style="cursor: pointer;" id="eliminar_temas"><?php echo $inc_temas_usuario_adm[2]; ?></a></li>
+	<li><a style="cursor: pointer;" id="cerrar_temas"><?php echo $inc_temas_usuario_adm[3]; ?></a></li>
+	<li><a style="cursor: pointer;" id="abrir_temas"><?php echo $inc_temas_usuario_adm[4]; ?></a></li>
     </ul>
     </div>
     <form id="form_eliminar_temas" method="post">
@@ -30,11 +30,11 @@ $id_usuario = $_GET["id_usuario"];
 <form method="post" id="form">
     <table class="table table-bordered" style="width: 85%;">
    <tr class="info">
-   <td><strong>ID</strong></td>
-   <td><strong>TEMAS</strong></td>
-   <td><strong>ESTADO</strong></td>
-   <td><strong>AUTOR<strong></td>
-   <td><strong>ACCIONES</strong></td>
+   <td><strong><?php echo $inc_temas_usuario_adm[5]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_usuario_adm[6]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_usuario_adm[7]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_usuario_adm[8]; ?></strong></td>
+   <td><strong><?php echo $inc_temas_usuario_adm[9]; ?></strong></td>
    </tr>
   <?php
   // Esto es para el final

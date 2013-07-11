@@ -1,7 +1,7 @@
 <?php
 if ($_GET["action"] == "themes")
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 function listar_directorios_ruta($ruta){
    // abrir un directorio y listarlo recursivo
    if (is_dir($ruta)) {
@@ -25,19 +25,19 @@ $resultado_selected = $conexion -> query($consulta_selected);
 $fila_selected = $resultado_selected -> fetch_array();
 $theme_selected = $fila_selected["theme"];
 ?>
-<h3>Diseñando el Foro</h3>
+<h3><?php echo $inc_themes_adm[0]; ?></h3>
 
 	<div class="btn-group">
-    <button class="btn" id="btn_temas">Temas</button>
-	<button class="btn" id="btn_instalar_tema">Instalar tema</button>
-    <button class="btn" id="btn_icono">Icono</button>
-	<button class="btn" id="btn_cabecera">Cabecera</button>
+    <button class="btn" id="btn_temas"><?php echo $inc_themes_adm[1]; ?></button>
+	<button class="btn" id="btn_instalar_tema"><?php echo $inc_themes_adm[2]; ?></button>
+    <button class="btn" id="btn_icono"><?php echo $inc_themes_adm[3]; ?></button>
+	<button class="btn" id="btn_cabecera"><?php echo $inc_themes_adm[4]; ?></button>
     </div>
 
 <div id="box_temas">
 <br>
-<h4>Temas disponibles ...</h4>
-Para descargar nuevos temas para tu foro ve a la siguiente dirección ... <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
+<h4><?php echo $inc_themes_adm[5]; ?></h4>
+<?php echo $inc_themes_adm[6]; ?> <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
 <br><br>
 <form method="post">
 <select name='theme' multiple="multiple" size="10">
@@ -45,47 +45,47 @@ Para descargar nuevos temas para tu foro ve a la siguiente dirección ... <a href
 listar_directorios_ruta("../bootstrap/themes/"); 
 ?>
 </select>
-<button type="submit" class="btn">Aplicar estilos del tema seleccionado</button>
-<button type="button" class="btn" id="cerrar_temas"><span class=" icon-remove-circle"></span> Cerrar</button>
+<button type="submit" class="btn"><?php echo $inc_themes_adm[7]; ?></button>
+<button type="button" class="btn" id="cerrar_temas"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[8]; ?></button>
 </form>
 </div>
 
 <div id="box_icono">
 <br><br>
-<strong>Icono actual:</strong> <img src="<?php echo $url_foro."imagenes/".$icono_foro ?>">
+<strong><?php echo $inc_themes_adm[9]; ?>:</strong> <img src="<?php echo $url_foro."imagenes/".$icono_foro ?>">
 <form method="post" enctype="multipart/form-data">
-<b>Icono del Foro:</b>
+<b><?php echo $inc_themes_adm[10]; ?>:</b>
 <input type='file' name='file'> 
 <input type="hidden" name="icono">
 <span class="font-size-10">Max. 1Mb | .ico</span>
 <br><br>
-<button type="submit" class="btn">Subir icono</button>
-<button type="button" class="btn" id="cerrar_icono"><span class=" icon-remove-circle"></span> Cerrar</button>
+<button type="submit" class="btn"><?php echo $inc_themes_adm[11]; ?></button>
+<button type="button" class="btn" id="cerrar_icono"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[12]; ?></button>
 </form>
 </div>
 
 <div id="box_instalar_tema">
 <br>
-<h3>Instalar Tema</h3>
-Para descargar nuevos temas para tu foro ve a la siguiente dirección ... <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
+<h3><?php echo $inc_themes_adm[13]; ?></h3>
+<?php echo $inc_themes_adm[14]; ?> <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
 <br><br>
 <form method="post" action="" class="form-search">
-url del tema: <input type="text" name="instalar_tema">
-<button type="submit" class="btn">Instalar</button>
-<button type="button" class="btn" id="cerrar_instalar_tema"><span class=" icon-remove-circle"></span> Cerrar</button>
+<?php echo $inc_themes_adm[15]; ?>: <input type="text" name="instalar_tema">
+<button type="submit" class="btn"><?php echo $inc_themes_adm[16]; ?></button>
+<button type="button" class="btn" id="cerrar_instalar_tema"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[17]; ?></button>
 </form>
 </div>
 
 <div id="box_cabecera">
 <br>
-<h4>Insertar código HTML/Javascript en la cabecera del foro</h4>
+<h4><?php echo $inc_themes_adm[18]; ?></h4>
 <form method="post">
 <textarea rows='8' style="width: 90%; font-family: 'Lucida Console'; font-size: 12px;" id='editar_cabecera' name='editar_cabecera'>
 <?php include "../system/procesos/include-cabecera.php"; ?>
 </textarea>
 <br><br>
-<button type="submit" class="btn">Aceptar</button>
-<button type="button" class="btn" id="cerrar_cabecera"><span class=" icon-remove-circle"></span> Cerrar</button>
+<button type="submit" class="btn"><?php echo $inc_themes_adm[19]; ?></button>
+<button type="button" class="btn" id="cerrar_cabecera"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
 </form>
 </div>
 

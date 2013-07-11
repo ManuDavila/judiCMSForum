@@ -11,7 +11,7 @@ $session = "
 
 <form method='get' class='navbar-form pull-right'>
 <button type='submit' class='btn'>
-<i class='icon-user icon-grey'></i>Bienvenido ".$_SESSION["nick_admin"]."
+<i class='icon-user icon-grey'></i>".$session_adm[0]." ".$_SESSION["nick_admin"]."
 </button>
 <input type='hidden' name='action' value='detalles'>
 </form>
@@ -21,14 +21,5 @@ else
 {
 header("location: admin.php");
 exit();
-}
-function restringido()
-{
-session_start();
-if ($_SESSION["admin"] != true)
-{
-header("location: admin.php");
-exit();
-}
 }
 ?>

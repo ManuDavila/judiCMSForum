@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST["destinatarios"]) != "")
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 require("system/phpmailer/class.phpmailer.php");
 $asunto = $_POST["asunto"];
 $destinatarios = $_POST["destinatarios"];
@@ -33,7 +33,7 @@ if($mail)
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>$x Email/s enviado/s con éxito</strong>
+<strong>$x ".$pro_enviar_email_adm[0]."</strong>
 </div>";
 }
 else
@@ -41,7 +41,7 @@ else
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Ha ocurrido un error</strong>
+<strong>".$pro_enviar_email_adm[1]."</strong>
 </div>";
 }
 }

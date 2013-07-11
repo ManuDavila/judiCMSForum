@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST["lista_negra"]))
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $consulta_limpieza = "DELETE FROM ip";
 $resultado_limpieza = $conexion -> query ($consulta_limpieza);
 
@@ -18,7 +18,7 @@ $resultado = $conexion -> query($consulta);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Ips añadidas a la lista negra con éxito</strong>
+<strong>".$pro_bloquear_ips_adm[0]."</strong>
 </div>";
 }
 ?>

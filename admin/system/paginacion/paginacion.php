@@ -175,10 +175,9 @@ global $_param;
 $_param = $param;
 if($_item >= 1)
 {
-echo "<a class='$class btn'  href='?previous=1".$_param."'>Primera</a>";
-echo "<a class='$class btn'  href='?page_anterior=$_page&item=$_item&max=$_maximo_de_paginas".$_param."'>Anterior</a>";
+echo "<a class='$class btn'  href='?previous=1".$_param."'><span class='icon-fast-backward'></span></a>";
+echo "<a class='$class btn'  href='?page_anterior=$_page&item=$_item&max=$_maximo_de_paginas".$_param."'><span class='icon-step-backward'></span></a>";
 }
-
 
 for($x = $_item; $x < $_maximo_de_paginas; $x++)
 {
@@ -192,13 +191,13 @@ break;
 }
 
 $numeros = $_page+1;
-echo "<span class='btn'>Pág. <b>$numeros</b></span>";
+echo "<span class='btn'><span class='icon-book'></span> <b>$numeros</b></span>";
 
 if ($_maximo_de_paginas * $_maximo_resultados_pagina < $total)
 {
 $_page = $_page+1;
 $_item = $_item + 1;
-echo "<a class='$class btn' href='?page_siguiente=$_page&item=$_item&max=$_maximo_de_paginas".$_param."'>Siguiente</a>";
+echo "<a class='$class btn' href='?page_siguiente=$_page&item=$_item&max=$_maximo_de_paginas".$_param."'><span class='icon-step-forward'></span></a>";
 }
 }
 }

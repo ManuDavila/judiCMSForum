@@ -1,7 +1,7 @@
 <?php
 if($_GET["action"] == "estadisticas")
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $fecha = date("Y-m-d");
 $consulta_fecha_inicial = "SELECT fecha FROM visitas LIMIT 0, 1";
 $resultado_fecha_inicial = $conexion -> query($consulta_fecha_inicial);
@@ -18,7 +18,7 @@ $default_fecha = $fila_fecha["fecha"];
 $default_fecha = explode("-", $default_fecha);
 $visitas_desde = $default_fecha[2]."-".$default_fecha[1]."-".$default_fecha[0];
 $visitas_hasta = $default_fecha[2]."-".$default_fecha[1]."-".$default_fecha[0];
-$total_visitas = "Páginas vistas en el día de hoy <span class='icon-arrow-right'></span> <strong><span class='label label-info'>".$fila_fecha["visitas"]."</span></strong>";
+$total_visitas = "".$inc_estadisticas_amd[0]." <span class='icon-arrow-right'></span> <strong><span class='label label-info'>".$fila_fecha["visitas"]."</span></strong>";
 
 
 if (isset($_POST["visitas_desde"]) && isset($_POST["visitas_hasta"]))
@@ -44,19 +44,19 @@ while($fila_fecha = $resultado_fecha -> fetch_array())
 {
 $sumando_visitas += $fila_fecha["visitas"];
 }
-$total_visitas = "Páginas vistas desde el <i>$visitas_desde</i> hasta el <i>$visitas_hasta</i> <span class='icon-arrow-right'></span> <strong><span class='label label-info'>".$sumando_visitas."</span></strong>";
+$total_visitas = "".$inc_estadisticas_amd[1]." <i>$visitas_desde</i> ".$inc_estadisticas_amd[2]." <i>$visitas_hasta</i> <span class='icon-arrow-right'></span> <strong><span class='label label-info'>".$sumando_visitas."</span></strong>";
 }
 }
 ?>
-<h3>Estadísticas del Foro</h3>
+<h3><?php echo $inc_estadisticas_amd[3]; ?></h3>
 <div class="alert alert-info">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
-El primer reporte de páginas vistas del foro fue recibido el <i><?php echo $fecha_inicial; ?></i>
+<?php echo $inc_estadisticas_amd[4]; ?> <i><?php echo $fecha_inicial; ?></i>
 </div>
 <form method="post" class="form-search" id="form_fecha">
-Desde: <input type="text" name="visitas_desde" id="visitas_desde" class="input-small" value="<?php echo $visitas_desde; ?>"> 
-Hasta: <input type="text" name="visitas_hasta" id="visitas_hasta" class="input-small" value="<?php echo $visitas_hasta; ?>">
-<button type="button" onclick="fechas()" class="btn">Buscar</button>
+<?php echo $inc_estadisticas_amd[5]; ?>: <input type="text" name="visitas_desde" id="visitas_desde" class="input-small" value="<?php echo $visitas_desde; ?>"> 
+<?php echo $inc_estadisticas_amd[6]; ?>: <input type="text" name="visitas_hasta" id="visitas_hasta" class="input-small" value="<?php echo $visitas_hasta; ?>">
+<button type="button" onclick="fechas()" class="btn"><?php echo $inc_estadisticas_amd[7]; ?></button>
 </form>
 <?php
 echo $total_visitas;

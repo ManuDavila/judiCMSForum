@@ -1,17 +1,17 @@
 <?php 
 if ($_GET["action"] == "mensajes" && $_GET["id_usuario"])
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $id_usuario = $_GET["id_usuario"];
 ?>
-<h3>Mensajes de Usuario <?php echo $_GET["tema"]; ?></h3>
+<h3><?php echo $inc_mensajes_usuario_adm[0]; ?> <?php echo $_GET["tema"]; ?></h3>
     <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Acciones
+    <?php echo $inc_mensajes_usuario_adm[1]; ?>
     <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-	<li><a style="cursor: pointer;" id="btn_eliminar_mensaje">Eliminar mensaje</a></li>
+	<li><a style="cursor: pointer;" id="btn_eliminar_mensaje"><?php echo $inc_mensajes_usuario_adm[2]; ?></a></li>
     </ul>
     </div>
     <form id="form_eliminar_mensaje" method="post">
@@ -21,10 +21,10 @@ $id_usuario = $_GET["id_usuario"];
 <form method="post" id="form">
     <table class="table table-bordered" style="width: 85%;">
    <tr class="info">
-   <td><strong>USUARIO</strong></td>
-   <td><strong>MENSAJE</strong></td>
-   <td><strong>TEMA<strong></td>
-   <td><strong>ACCIONES</strong></td>
+   <td><strong><?php echo $inc_mensajes_usuario_adm[3]; ?></strong></td>
+   <td><strong><?php echo $inc_mensajes_usuario_adm[4]; ?></strong></td>
+   <td><strong><?php echo $inc_mensajes_usuario_adm[5]; ?><strong></td>
+   <td><strong><?php echo $inc_mensajes_usuario_adm[6]; ?></strong></td>
    </tr>
   <?php
 //primero se hace la llamada al script

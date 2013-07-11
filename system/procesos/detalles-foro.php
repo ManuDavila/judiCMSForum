@@ -12,4 +12,5 @@ $notificacion_tema = $fila_foro["notificacion_tema"];
 $notificacion_mensaje = $fila_foro["notificacion_mensaje"];
 $theme_foro = $fila_foro["theme"];
 $icono_foro = $fila_foro["icono"];
+$language_foro = $fila_foro["language"];
 ?>

@@ -85,8 +85,8 @@ include "system/procesos/detalles-foro.php";
         <div class="page-header">
           <h1>ERROR</h1>
         </div>
-        <p class="lead">Ha ocurrido un error la página no se encuentra.</p>
-        <p>Error registrado. Su <a href="http://whois.arin.net/rest/ip/<?php echo $_SERVER["REMOTE_ADDR"]; ?>" target="_blank">dirección ip</a> es <?php echo $_SERVER["REMOTE_ADDR"]; ?>.</p>
+        <p class="lead">An error occurred Page not found.</p>
+        <p>Registered error in the <a href="http://whois.arin.net/rest/ip/<?php echo $_SERVER["REMOTE_ADDR"]; ?>" target="_blank"> ip</a> <?php echo $_SERVER["REMOTE_ADDR"]; ?>.</p>
       </div>
 
       <div id="push"></div>
@@ -95,7 +95,7 @@ include "system/procesos/detalles-foro.php";
    	  <footer>
 	  <div class="text-center">
         <strong>
-		<a href="index.php">JUDI CMS FORO</a>
+		<a href="index.php">BACK TO FORUM</a>
         </strong>
 	</div>
 	<br><br>

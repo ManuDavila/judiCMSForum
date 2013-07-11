@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST["antirobots"]))
 {
-restringido();
+include_once "".$url_foro."admin/system/restricted.php";
 $max_registro = $_POST["max_registro"];
 $max_activar_cuenta = $_POST["max_activar_cuenta"];
 $max_iniciar_sesion = $_POST["max_iniciar_sesion"];
@@ -36,7 +36,7 @@ if (!preg_match("/^([0-9])+$/", $array_max[$x]))
 $msg_box = "
 <div class='alert alert-error'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Alguno de los campos no contiene los caracteres permitidos, sólo números</strong>
+<strong>".$pro_form_antirobots_adm[0]."</strong>
 </div>";
 return;
 }
@@ -51,7 +51,7 @@ $resultado = $conexion -> query($consulta);
 $msg_box = "
 <div class='alert alert-success'>
 <button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>Tarea realizada con éxito</strong>
+<strong>".$pro_form_antirobots_adm[1]."</strong>
 </div>";
 }
 ?>

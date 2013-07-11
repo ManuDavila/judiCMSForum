@@ -9,4 +9,5 @@ $description_foro = $fila_foro["description"];
 $keywords_foro = $fila_foro["keywords"];
 $theme_foro = $fila_foro["theme"];
 $icono_foro = $fila_foro["icono"];
+$language_foro = $fila_foro["language"];
 ?>

@@ -2,7 +2,6 @@
 if ($_GET["query"] == "temas")
 {
 $id_usuario = $_GET["id_usuario"];
-//Evitar inyección sql
 if (!preg_match("/^([0-9])+$/", $id_usuario))
 {
 header("location: index.php");
@@ -18,11 +17,20 @@ $apellido_1_usuario = $fila_usuario["apellido_1"];
 $apellido_2_usuario = $fila_usuario["apellido_2"];
 $fecha_registro_usuario = $fila_usuario["fecha_registro"];
 $fecha_registro_usuario = explode("-", $fecha_registro_usuario);
-$fecha_registro_usuario = $fecha_registro_usuario[2]." de ".get_string_mes($fecha_registro_usuario[1])." del ".$fecha_registro_usuario[0];
+
+if ($language == "es")
+{
+$fecha_registro_usuario = $fecha_registro_usuario[2]." del ".get_string_mes($fecha_registro_usuario[1])." del ".$fecha_registro_usuario[0];
+}
+if ($language == "en")
+{
+$fecha_registro_usuario = "".get_string_mes($fecha_registro_usuario[1])." ".$fecha_registro_usuario[2].", ".$fecha_registro_usuario[0]."";
+}
+
 $avatar_usuario = $fila_usuario["avatar"];
 $leyenda = $fila_usuario["leyenda"];
 if ($leyenda != ""){
-$leyenda = "Leyenda: <span class='label label-inverse'>".$fila_usuario["leyenda"]."</span>";
+$leyenda = "<span class='label label-inverse'>".$fila_usuario["leyenda"]."</span>";
 }
 }
 else
@@ -30,14 +38,9 @@ else
 header("location: index.php");
 exit();
 }
-
-//primero se hace la llamada al script
 require("system/paginacion/paginacion.php");
-// paginacion(conexion a la base de datos);
 $paginacion = new paginacion($conexion);
-//contar_filas(consulta para contar el total de filas);
 $paginacion->contar_filas("SELECT COUNT(id_tema) FROM temas WHERE id_usuario=$id_usuario"); 
-//tipo_resultados(numero de páginas, número de filas por página);
 $paginacion->tipo_resultados(3, 10);
 
 $consulta_temas = "SELECT * FROM temas WHERE id_usuario=$id_usuario ORDER BY id_tema DESC LIMIT ".$_empezar_de_fila.", ".$_maximo_resultados_pagina."";
@@ -64,22 +67,22 @@ $temas_usuario .= "<script type='text/javascript'>
 $x++;
 }
 ?>
-<h3>TEMAS DE USUARIO</h3>
+<h3><?php echo $inc_temas_usuario[2]; ?></h3>
 <table>
 <tr>
 <td>
 <img src="<?php echo $avatar_usuario; ?>" class="img-rounded" style="width: 160px; height: 160px;">
 </td>
 <td style="padding-left: 15px;">
-Usuario: <a href="index.php?action=user&id_usuario=<?php echo $_GET["id_usuario"]; ?>&query=verusuario"><strong><?php echo $nombre_usuario; ?></strong></a>
+<?php echo $inc_temas_usuario[3]; ?>: <a href="index.php?action=user&id_usuario=<?php echo $_GET["id_usuario"]; ?>&query=verusuario"><strong><?php echo $nombre_usuario; ?></strong></a>
 <br>
-Registrado el <?php echo $fecha_registro_usuario; ?>
+<?php echo $inc_temas_usuario[4]; ?> <?php echo $fecha_registro_usuario; ?>
 <br><br>
 </td>
 <td style="padding-left: 10px;">
 <table>
 <tr>
-<td>TEMAS</td>
+<td><?php echo $inc_temas_usuario[5]; ?></td>
 <td>
 <?php 
 $consulta_temas = "SELECT COUNT(id_tema) AS total_temas FROM temas WHERE id_usuario=".$id_usuario."";
@@ -90,7 +93,7 @@ echo "<a href='index.php?action=user&id_usuario=".$id_usuario."&query=temas' cla
 ?>
 </td>
 </tr>
-<tr><td>MENSAJES</td>
+<tr><td><?php echo $inc_temas_usuario[6]; ?></td>
 <td>
 <?php
 $consulta_mensajes = "SELECT COUNT(id_mensaje) AS total_mensajes FROM mensajes WHERE id_usuario=".$id_usuario." AND es_tema_principal='false'";
@@ -108,13 +111,12 @@ echo "<a href='index.php?action=user&id_usuario=".$id_usuario."&query=mensajes' 
 <?php echo $leyenda; ?>
 <br><br>
 <table class="table table-bordered" style="width: 90%;">
-<tr><td><strong>TEMA</strong></td><td><strong>MENSAJE</strong></td><td><strong>FECHA</strong></td></tr>
+<tr><td><strong><?php echo $inc_temas_usuario[7]; ?></strong></td><td><strong><?php echo $inc_temas_usuario[8]; ?></strong></td><td><strong><?php echo $inc_temas_usuario[9]; ?></strong></td></tr>
 <?php echo $temas_usuario; ?>
 </table>
 <div id='paginacion' class="btn-toolbar">
 <div class="btn-group">
 <?php
-// paginas(id, parametros opcionales);
 $paginacion->paginas("paginacion", "&action=query&id_usuario=$id_usuario&query=temas");
 ?>
 </div>

@@ -17,8 +17,8 @@ AddDefaultCharset charset=ISO-8859-1
 Options All -Indexes 
 
 #Errores
-ErrorDocument 404 http://localhost/judiCMSForum/error.php
-ErrorDocument 403 http://localhost/judiCMSForum/error.php
-ErrorDocument 400 http://localhost/judiCMSForum/error.php
-ErrorDocument 401 http://localhost/judiCMSForum/error.php
-ErrorDocument 500 http://localhost/judiCMSForum/error.php
+ErrorDocument 404 http://localhost/prueba_foro/error.php
+ErrorDocument 403 http://localhost/prueba_foro/error.php
+ErrorDocument 400 http://localhost/prueba_foro/error.php
+ErrorDocument 401 http://localhost/prueba_foro/error.php
+ErrorDocument 500 http://localhost/prueba_foro/error.php
