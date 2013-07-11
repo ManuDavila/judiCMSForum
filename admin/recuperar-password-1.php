@@ -3,7 +3,7 @@ error_reporting("E_NOTICE");
 include "../system/conexion.php";
 include "system/no_xss/class.inputfilter.php";
 include "system/procesos/detalles-foro.php";
-include "/system/language/$language_foro.php";
+include "system/language/$language_foro.php";
 include "system/procesos/antirobots.php"; 
 include "system/procesos/msg_box.php";
 include "system/banear_ip/banear-ip.php";
