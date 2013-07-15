@@ -602,7 +602,7 @@ $inc_categoria = array(
 $inc_contacto = array(
 0 => "Only for registered users.",
 1 => "Register",
-2 => ".My question",
+2 => ". My question",
 3 => "Send"
 );
 /* contacto.php */
