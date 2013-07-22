@@ -15,9 +15,9 @@ return;
 $rand = rand(1, 1000);
 $cad = $nombre;
 $tamano = $_FILES [ 'file' ][ 'size' ];
-$tamaño_max="8400000";
+$tamano_max="8400000";
 
-if( $tamano < $tamaño_max){
+if( $tamano < $tamano_max){
 $destino = '../imagenes' ;
 $sep=explode("image/", $_FILES["file"]["type"]);
 $tipo=$sep[1];
