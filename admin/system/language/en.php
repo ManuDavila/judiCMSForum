@@ -369,6 +369,12 @@ $pro_editar_cabecera_adm = array(
 );
 /* editar-cabecera.php adm/pro */
 
+/* editar-piedepagina.php adm/pro */
+$pro_editar_piedepagina_adm = array(
+0 => "Action completed successfully"
+);
+/* editar-piedepagina.php adm/pro */
+
 /* eliminar-indices.php adm/pro */
 $pro_eliminar_indices_adm = array(
 0 => "Action completed successfully"
