@@ -27,10 +27,10 @@ if ($id_subcategoria > 0)
 {
 require("system/paginacion/paginacion.php");
 $paginacion = new paginacion($conexion);
-$paginacion->contar_filas("SELECT COUNT(id_tema) FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria"); 
+$paginacion->contar_filas("SELECT COUNT(id_tema) FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria ORDER BY id_tema DESC"); 
 $paginacion->tipo_resultados(3, 10);
 
-$consulta_temas = "SELECT * FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria ORDER BY id_tema ASC LIMIT ".$_empezar_de_fila.", ".$_maximo_resultados_pagina."";
+$consulta_temas = "SELECT * FROM temas WHERE id_categoria=$id_categoria AND id_subcategoria=$id_subcategoria ORDER BY id_tema DESC LIMIT ".$_empezar_de_fila.", ".$_maximo_resultados_pagina."";
 $resultado_temas = $conexion->query($consulta_temas);
 
 $x = 0;
