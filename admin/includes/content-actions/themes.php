@@ -32,6 +32,7 @@ $theme_selected = $fila_selected["theme"];
 	<button class="btn" id="btn_instalar_tema"><?php echo $inc_themes_adm[2]; ?></button>
     <button class="btn" id="btn_icono"><?php echo $inc_themes_adm[3]; ?></button>
 	<button class="btn" id="btn_cabecera"><?php echo $inc_themes_adm[4]; ?></button>
+        <button class="btn" id="btn_piedepagina"><?php echo $inc_themes_adm[21]; ?></button>
     </div>
 
 <div id="box_temas">
@@ -89,6 +90,19 @@ listar_directorios_ruta("../bootstrap/themes/");
 </form>
 </div>
 
+<div id="box_piedepagina">
+<br>
+<h4><?php echo $inc_themes_adm[22]; ?></h4>
+<form method="post">
+<textarea rows='8' style="width: 90%; font-family: 'Lucida Console'; font-size: 12px;" id='editar_piedepagina' name='editar_piedepagina'>
+<?php include "../system/procesos/include-piedepagina.php"; ?>
+</textarea>
+<br><br>
+<button type="submit" class="btn"><?php echo $inc_themes_adm[19]; ?></button>
+<button type="button" class="btn" id="cerrar_piedepagina"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
+</form>
+</div>
+
 <script>
 $(function()
 {
@@ -99,6 +113,7 @@ $("#box_temas").show();
 $("#box_icono").hide();
 $("#box_instalar_tema").hide();
 $("#box_cabecera").hide();
+$("#box_piedepagina").hide();
 });
 
 $("#box_instalar_tema").hide();
@@ -108,6 +123,7 @@ $("#box_instalar_tema").show();
 $("#box_icono").hide();
 $("#box_temas").hide();
 $("#box_cabecera").hide();
+$("#box_piedepagina").hide();
 });
 
 $("#box_icono").hide();
@@ -117,12 +133,24 @@ $("#box_icono").show();
 $("#box_temas").hide();
 $("#box_instalar_tema").hide();
 $("#box_cabecera").hide();
+$("#box_piedepagina").hide();
 });
 
 $("#box_cabecera").hide();
 $("#btn_cabecera").click(function()
 {
 $("#box_cabecera").show();
+$("#box_piedepagina").hide();
+$("#box_temas").hide();
+$("#box_instalar_tema").hide();
+$("#box_icono").hide();
+});
+
+$("#box_piedepagina").hide();
+$("#btn_piedepagina").click(function()
+{
+$("#box_piedepagina").show();
+$("#box_cabecera").hide();
 $("#box_temas").hide();
 $("#box_instalar_tema").hide();
 $("#box_icono").hide();
@@ -146,6 +174,11 @@ $("#box_icono").hide();
 $("#cerrar_cabecera").click(function()
 {
 $("#box_cabecera").hide();
+});
+
+$("#cerrar_piedepagina").click(function()
+{
+$("#box_piedepagina").hide();
 });
 
 $("select option").each(function(index){

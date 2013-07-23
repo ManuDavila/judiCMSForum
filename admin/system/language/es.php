@@ -249,7 +249,10 @@ $inc_themes_adm = array(
 17 => "Cerrar",
 18 => "Insertar código HTML/Javascript en la cabecera del foro",
 19 => "Aceptar",
-20 => "Cerrar"
+20 => "Cerrar",
+21 => "Pie de página",
+22 => "Insertar código HTML/Javascript en el pie de página del foro",
+23 => "Aceptar",
 );
 /* temas-usuario.php adm/inc */
 
@@ -351,6 +354,12 @@ $pro_cerrar_temas_adm = array(
 
 /* editar-cabecera.php adm/pro */
 $pro_editar_cabecera_adm = array(
+0 => "Tarea realizada con éxito"
+);
+/* editar-cabecera.php adm/pro */
+
+/* editar-piedepagina.php adm/pro */
+$pro_editar_piedepagina_adm = array(
 0 => "Tarea realizada con éxito"
 );
 /* editar-cabecera.php adm/pro */

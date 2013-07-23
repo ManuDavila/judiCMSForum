@@ -2,7 +2,9 @@
 	 <br><br>
 		<span class="badge badge-success"><?php echo $inc_footer[0]; ?></span>
 	<span class="badge badge-info"><?php echo $inc_footer[1]; ?>: <?php echo $total_invitados; ?> <?php echo $inc_footer[2]; ?> - <?php echo $registrados_conectados ?> <?php echo $inc_footer[3]; ?></span>
-	</center>
+	 <br><br>
+            <?php include "system/procesos/include-piedepagina.php"; ?>
+     </center>
 	  <br><br>
 	  <footer>
 	  <div class="text-center">
