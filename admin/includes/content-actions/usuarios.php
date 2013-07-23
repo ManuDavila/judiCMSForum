@@ -67,8 +67,7 @@ $total_usuarios = $fila_total["total_usuarios"];
  $fila = $resultado -> fetch_array();
  $email = $fila["email"];
  $nombre = $fila["nombre"];
- $apellido_1 = $fila["apellido_1"];
- $apellido_2 = $fila["apellido_2"];
+ $apellidos = $fila["apellidos"];
  $nick = $fila["nick"];
  $avatar = $fila["avatar"];
  $leyenda = $fila["leyenda"];
@@ -99,7 +98,7 @@ $total_usuarios = $fila_total["total_usuarios"];
 <td><?php echo $id_usuario; ?></td>
 <td><?php echo $email; ?></td>
 <td><?php echo $nombre; ?></td>
-<td><?php echo $apellido_1." ".$apellido_2; ?></td>
+<td><?php echo $apellidos; ?></td>
 <td><?php echo "<a href='../index.php?action=user&id_usuario=".$id_usuario."&query=verusuario' target='_blank'><span class='label label-important'>$nick <span class='icon-white icon-search'></span></span></a>"; ?></td>
 <td><?php echo $activo; ?></td>
 <td><?php echo $ip; ?></td>

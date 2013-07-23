@@ -89,32 +89,17 @@ return;
 }
 
 
-//apellido 1
-elemento = $("#apellido_1").val();
+//apellidos
+elemento = $("#apellidos").val();
 var buscar = /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ\s]+$/
 if (elemento == "")
 {
-$("#e_apellido_1").html("Required").addClass("text-error");
+$("#e_apellidos").html("Required").addClass("text-error");
 return;
 }
 else if(!elemento.match(buscar) || elemento.length > 50)
 {
-$("#e_apellido_2").html("Only letters").addClass("text-error");
-return;
-}
-
-
-//apellido 2
-elemento = $("#apellido_2").val();
-var buscar = /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ\s]+$/
-if (elemento == "")
-{
-$("#e_apellido_2").html("Required").addClass("text-error");
-return;
-}
-else if(!elemento.match(buscar) || elemento.length > 50)
-{
-$("#e_apellido_2").html("Only letters").addClass("text-error");
+$("#e_apellidos").html("Only letters").addClass("text-error");
 return;
 }
 

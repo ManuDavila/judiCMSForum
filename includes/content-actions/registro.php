@@ -20,10 +20,7 @@ exit();
     <td class="text-right"><?php echo $inc_registro[2]; ?>:</td><td><input type="text" name="nombre" id="nombre" placeholder="<?php echo $inc_registro[2]; ?>"><label id="e_nombre"></label></td>
 	</tr>
 	<tr>
-	<td class="text-right"><?php echo $inc_registro[3]; ?>:</td><td><input type="text" name="apellido_1" id="apellido_1" placeholder="<?php echo $inc_registro[3]; ?>"><label id="e_apellido_1"></label></td>
-	</tr>
-	<tr>
-	<td class="text-right"><?php echo $inc_registro[4]; ?>:</td><td><input type="text" name="apellido_2" id="apellido_2" placeholder="<?php echo $inc_registro[4]; ?>"><label id="e_apellido_2"></label></td>
+	<td class="text-right"><?php echo $inc_registro[3]; ?>:</td><td><input type="text" name="apellidos" id="apellidos" placeholder="<?php echo $inc_registro[3]; ?>"><label id="e_apellidos"></label></td>
 	</tr>
 	<tr>
 	<td class="text-right"><?php echo $inc_registro[5]; ?>:</td><td><label class="radio"><input type="radio" name="sexo" value="chico" checked> <?php echo $inc_registro[6]; ?></label><label class="radio"><input type="radio" name="sexo" value="chica"> <?php echo $inc_registro[7]; ?></label></td>

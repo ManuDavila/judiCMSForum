@@ -100,8 +100,7 @@ $paginacion->tipo_resultados(3, 10);
  $id = $fila["id"];
  $email = $fila["email"];
  $nombre = $fila["nombre"];
- $apellido_1 = $fila["apellido_1"];
- $apellido_2 = $fila["apellido_2"];
+ $apellidos = $fila["apellidos"];
  $nick = $fila["nick"];
  $avatar = $fila["avatar"];
  $leyenda = $fila["leyenda"];
@@ -115,7 +114,7 @@ $paginacion->tipo_resultados(3, 10);
 <td><?php echo $id; ?></td>
 <td><?php echo $email; ?></td>
 <td><?php echo $nombre; ?></td>
-<td><?php echo $apellido_1." ".$apellido_2; ?></td>
+<td><?php echo $apellidos; ?></td>
 <td><?php echo "<a href='../index.php?action=user&id_usuario=".$id."&query=verusuario' target='_blank'><span class='label label-important'>$nick <span class='icon-white icon-search'></span></span></a>"; ?></td>
 <td><?php echo $activo; ?></td>
 <td><?php echo $ip; ?></td>

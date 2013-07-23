@@ -16,8 +16,7 @@ $consulta = "SELECT * FROM usuarios WHERE id=".$id_usuario."";
 $resultado = $conexion->query($consulta);
 $fila = $resultado->fetch_array();
 $nombre = $fila["nick"];
-$apellido_1 = $fila["apellido_1"];
-$apellido_2 = $fila["apellido_2"];
+$apellidos = $fila["apellidos"];
 $avatar = $fila["avatar"];
 $leyenda = $fila["leyenda"];
 if ($leyenda != ""){

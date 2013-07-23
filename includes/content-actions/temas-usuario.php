@@ -13,8 +13,7 @@ $fila_usuario = $resultado_usuario->fetch_array();
 if($fila_usuario>0)
 {
 $nombre_usuario = $fila_usuario["nick"];
-$apellido_1_usuario = $fila_usuario["apellido_1"];
-$apellido_2_usuario = $fila_usuario["apellido_2"];
+$apellidos_usuario = $fila_usuario["apellidos"];
 $fecha_registro_usuario = $fila_usuario["fecha_registro"];
 $fecha_registro_usuario = explode("-", $fecha_registro_usuario);
 

@@ -17,8 +17,7 @@ exit();
 
 $nick = addslashes(htmlspecialchars(strip_tags($_POST["nick"])));
 $nombre = addslashes(htmlspecialchars(strip_tags($_POST["nombre"])));
-$apellido_1 = addslashes(htmlspecialchars(strip_tags($_POST["apellido_1"])));
-$apellido_2 = addslashes(htmlspecialchars(strip_tags($_POST["apellido_2"])));
+$apellidos = addslashes(htmlspecialchars(strip_tags($_POST["apellidos"])));
 $email = addslashes(htmlspecialchars(strip_tags($_POST["email"])));
 $password = addslashes(htmlspecialchars(strip_tags($_POST["password"])));
 $repetir_password = addslashes(htmlspecialchars(strip_tags($_POST["repetir_password"])));
@@ -41,8 +40,7 @@ return;
 
 $filtrar = new InputFilter();
 $nombre = $filtrar->process($nombre);
-$apellido_1 = $filtrar->process($apellido_1);
-$apellido_2 = $filtrar->process($apellido_2);
+$apellidos = $filtrar->process($apellidos);
 $email = $filtrar->process($email);
 $password = $filtrar->process($password);
 $codigo_array = array ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
@@ -129,28 +127,7 @@ $msg_box = "
 return;
 }
 
-$elemento = $apellido_1;
-$buscar = "/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ\s]+$/";
-if ($elemento == "")
-{
-$msg_box = "
-<div class='alert alert-error'>
-<button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>".$pro_registro[1]."</strong>
-</div>";
-return;
-}
-else if(!preg_match($buscar, $elemento) || strlen($elemento) > 50)
-{
-$msg_box = "
-<div class='alert alert-error'>
-<button type='button' class='close' data-dismiss='alert'>&times;</button>
-<strong>".$pro_registro[1]."</strong>
-</div>";
-return;
-}
-
-$elemento = $apellido_2;
+$elemento = $apellidos;
 $buscar = "/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ\s]+$/";
 if ($elemento == "")
 {
@@ -226,8 +203,8 @@ return;
 
 else
 {
-$consulta = "INSERT INTO usuarios(nombre, apellido_1, apellido_2, email, nick, password, sexo, avatar, codigo_verificacion, activo, fecha_registro, ip)";
-$consulta .= " VALUES('$nombre', '$apellido_1', '$apellido_2', '$email', '$nick', '$password', '$sexo', '$avatar', '$codigo_verificacion', '$activo', '$fecha', '$ip')";
+$consulta = "INSERT INTO usuarios(nombre, apellidos, email, nick, password, sexo, avatar, codigo_verificacion, activo, fecha_registro, ip)";
+$consulta .= " VALUES('$nombre', '$apellidos', '$email', '$nick', '$password', '$sexo', '$avatar', '$codigo_verificacion', '$activo', '$fecha', '$ip')";
 $resultado = $conexion->query($consulta);
 
 if($resultado)
@@ -248,7 +225,7 @@ $mensaje = "
 ".$pro_registro[6].": $fecha<br>
 ".$pro_registro[7].": $hora<br>
 ".$pro_registro[8].": $nombre<br>
-".$pro_registro[9].": $apellido_1 $apellido_2<br>
+".$pro_registro[9].": $apellidos<br>
 Nick: $nick<br>
 Whois: <a href='http://whois.arin.net/rest/ip/$ip'>http://whois.arin.net/rest/ip/$ip</a>
 <br><br>
