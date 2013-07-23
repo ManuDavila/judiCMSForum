@@ -254,7 +254,10 @@ $inc_themes_adm = array(
 17 => "Close",
 18 => "Insert HTML/Javascript in the header of the forum",
 19 => "Accept",
-20 => "Close"
+20 => "Close",
+21 => "Footer",
+22 => "Insert HTML/Javascript in the footer of the forum",
+23 => "Accept",
 );
 /* temas-usuario.php adm/inc */
 
