@@ -37,7 +37,7 @@ if ($_GET["action"] == "themes") {
         <button class="btn" id="btn_custom_css"><?php echo $inc_themes_adm[24]; ?></button>
     </div>
 
-    <div id="box_temas">
+    <div id="box_temas" class="box-hide">
         <br>
         <h4><?php echo $inc_themes_adm[5]; ?></h4>
     <?php echo $inc_themes_adm[6]; ?> <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
@@ -49,11 +49,11 @@ if ($_GET["action"] == "themes") {
                 ?>
             </select>
             <button type="submit" class="btn"><?php echo $inc_themes_adm[7]; ?></button>
-            <button type="button" class="btn" id="cerrar_temas"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[8]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[8]; ?></button>
         </form>
     </div>
 
-    <div id="box_icono">
+    <div id="box_icono" class="box-hide">
         <br><br>
         <strong><?php echo $inc_themes_adm[9]; ?>:</strong> <img src="<?php echo $url_foro . "imagenes/" . $icono_foro ?>">
         <form method="post" enctype="multipart/form-data">
@@ -63,11 +63,11 @@ if ($_GET["action"] == "themes") {
             <span class="font-size-10">Max. 1Mb | .ico</span>
             <br><br>
             <button type="submit" class="btn"><?php echo $inc_themes_adm[11]; ?></button>
-            <button type="button" class="btn" id="cerrar_icono"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[12]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[12]; ?></button>
         </form>
     </div>
 
-    <div id="box_instalar_tema">
+    <div id="box_instalar_tema" class="box-hide">
         <br>
         <h3><?php echo $inc_themes_adm[13]; ?></h3>
     <?php echo $inc_themes_adm[14]; ?> <a href="http://www.judicms.com/index.php?action=buscar-themes" target="_blank">THEMES</a>
@@ -75,11 +75,11 @@ if ($_GET["action"] == "themes") {
         <form method="post" action="" class="form-search">
     <?php echo $inc_themes_adm[15]; ?>: <input type="text" name="instalar_tema">
             <button type="submit" class="btn"><?php echo $inc_themes_adm[16]; ?></button>
-            <button type="button" class="btn" id="cerrar_instalar_tema"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[17]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[17]; ?></button>
         </form>
     </div>
 
-    <div id="box_cabecera">
+    <div id="box_cabecera" class="box-hide">
         <br>
         <h4><?php echo $inc_themes_adm[18]; ?></h4>
         <form method="post">
@@ -88,11 +88,11 @@ if ($_GET["action"] == "themes") {
             </textarea>
             <br><br>
             <button type="submit" class="btn"><?php echo $inc_themes_adm[19]; ?></button>
-            <button type="button" class="btn" id="cerrar_cabecera"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
         </form>
     </div>
 
-    <div id="box_piedepagina">
+    <div id="box_piedepagina" class="box-hide">
         <br>
         <h4><?php echo $inc_themes_adm[22]; ?></h4>
         <form method="post">
@@ -101,11 +101,11 @@ if ($_GET["action"] == "themes") {
             </textarea>
             <br><br>
             <button type="submit" class="btn"><?php echo $inc_themes_adm[19]; ?></button>
-            <button type="button" class="btn" id="cerrar_piedepagina"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
         </form>
     </div>
     
-    <div id="box_custom_css">
+    <div id="box_custom_css" class="box-hide">
         <br>
         <h4><?php echo $inc_themes_adm[25]; ?></h4>
         <form method="post">
@@ -114,7 +114,7 @@ if ($_GET["action"] == "themes") {
             </textarea>
             <br><br>
             <button type="submit" class="btn"><?php echo $inc_themes_adm[19]; ?></button>
-            <button type="button" class="btn" id="cerrar_custom_css"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
         </form>
     </div>
 
@@ -138,37 +138,34 @@ if ($_GET["action"] == "themes") {
 
         $(function()
         {
-            $("#box_temas").hide();
+            	//iniciar con los boxes ocultos
+         $(".box-hide").hide();
+		 
             $("#btn_temas").click(function()
             {
                 showHide("temas");
             });
 
-            $("#box_instalar_tema").hide();
             $("#btn_instalar_tema").click(function()
             {
                 showHide("instalar_tema");
             });
 
-            $("#box_icono").hide();
             $("#btn_icono").click(function()
             {
                 showHide("icono");
             });
 
-            $("#box_cabecera").hide();
             $("#btn_cabecera").click(function()
             {
                 showHide("cabecera");
             });
 
-            $("#box_piedepagina").hide();
             $("#btn_piedepagina").click(function()
             {
                 showHide("piedepagina");
             });
             
-            $("#box_custom_css").hide();
             $("#btn_custom_css").click(function()
             {
                 showHide("custom_css");
@@ -176,12 +173,13 @@ if ($_GET["action"] == "themes") {
             
             /* 
              * David Torres
-             * Para que repetir, en una misma funcion añadimos todos */
-            $("#cerrar_temas, #cerrar_instalar_tema, #cerrar_icono, #cerrar_cabecera, #cerrar_piedepagina", "cerrar_custom_css").click(function()
+             * Para que repetir, en una misma funcion añadimos todos 
+			 * Mejor a partir de clases para la disminucion de codigo
+			*/
+			 
+            $(".init-box-hide").click(function()
             {
-                var id=this.parentNode.parentNode.id;
-                //conlole.log(this);
-                $("#"+id).hide();
+                $(".box-hide").fadeOut(1000);
             });
 
             $("select option").each(function(index) {

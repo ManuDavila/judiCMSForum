@@ -22,7 +22,7 @@ $dark_list = substr($dark_list, 0, -2);
 ?>
 
 
-<div id='box_ip'>
+<div id='box_ip' class="box-hide">
 <br>
 <form method='post'>
 <label><h4><?php echo $inc_servidor_adm[4]; ?></h4></label>
@@ -37,11 +37,11 @@ $dark_list = substr($dark_list, 0, -2);
 <textarea rows='8' style="width: 90%; font-family: 'Lucida Console'; font-size: 12px;" id='lista_negra' name='lista_negra'><?php echo $dark_list; ?></textarea>
 <br><br>
 <button type='submit' class='btn'><?php echo $inc_servidor_adm[8]; ?></button>
-<button type="button" class="btn" id="cerrar_ip"><span class=" icon-remove-circle"></span> <?php echo $inc_servidor_adm[9]; ?></button>
+<button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_servidor_adm[9]; ?></button>
 </form>
 </div>
 
-<div id='htaccess'>
+<div id='box_htaccess' class="box-hide">
 <?php
 $consulta_htaccess = "SELECT * FROM htaccess";
 $resultado_htaccess = $conexion -> query($consulta_htaccess);
@@ -66,11 +66,11 @@ $ssl = $fila_htaccess["ssl"];
 <br><br>
 <input type="hidden" name="htaccess">
 <button type="submit" class="btn"><?php echo $inc_servidor_adm[18]; ?></button>
-<button type="button" class="btn" id="cerrar_htaccess"><span class=" icon-remove-circle"></span> <?php echo $inc_servidor_adm[19]; ?></button>
+<button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_servidor_adm[19]; ?></button>
 </form>
 </div>
 
-<div id='box_antirobots'>
+<div id='box_antirobots' class="box-hide">
 <br><br>
 <form method="post" class="form-search">
 <div class="alert alert-info" style="text-align: justify;">
@@ -121,53 +121,57 @@ $ssl = $fila_htaccess["ssl"];
 <input type="hidden" name="antirobots">
 <br><br>
 <button type="submit" class="btn"><?php echo $inc_servidor_adm[34]; ?></button>
-<button type="button" class="btn" id="cerrar_antirobots"><span class=" icon-remove-circle"></span> <?php echo $inc_servidor_adm[35]; ?></button>
+<button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_servidor_adm[35]; ?></button>
 </form>
 </div>
 
 <script>
+
+        /* 
+         * David Torres
+         * Para eliminar repeticiones, creamos esta función y luego la llamamos desde cada elemento */
+        function showHide(id) {
+            var boxes = ["ip", "htaccess", "antirobots"];
+            for(var i in boxes){
+                if(boxes[i]==id){
+                    $("#box_"+boxes[i]).show();
+                    $("#btn_"+boxes[i]).addClass("active");
+                } else {
+                     $("#box_"+boxes[i]).hide();
+                     $("#btn_"+boxes[i]).removeClass("active");
+                }
+            }
+        }
+
 $(function()
 {
 
-$("#htaccess").hide();
-$("#btn_htaccess").click(function(){
-$("#htaccess").show();
-$("#box_ip").hide();
-$("#box_antirobots").hide();
-});
+	//iniciar con los boxes ocultos
+         $(".box-hide").hide();
 
-$("#box_ip").hide();
-$("#btn_ip").click(function(){
-$("#box_ip").show();
-$("#htaccess").hide();
-$("#box_antirobots").hide();
-});
+            $("#btn_ip").click(function()
+            {
+                showHide("ip");
+            });
 
-$("#box_antirobots").hide();
-$("#btn_antirobots").click(function(){
-$("#box_antirobots").show();
-$("#htaccess").hide();
-$("#box_ip").hide();
-});
+            $("#btn_htaccess").click(function()
+            {
+                showHide("htaccess");
+            });
 
-$("#cerrar_ip").click(function()
-{
-$("#box_ip").hide();
-});
+            $("#btn_antirobots").click(function()
+            {
+                showHide("antirobots");
+            });
 
-$("#cerrar_htaccess").click(function()
-{
-$("#htaccess").hide();
-});
-
-$("#cerrar_antirobots").click(function()
-{
-$("#box_antirobots").hide();
-});
+			/*Clases para el cierre del box*/
+            $(".init-box-hide").click(function()
+            {
+                $(".box-hide").fadeOut(1000);
+            });
 
 });
 </script>
 <?php
 }
 ?>
-

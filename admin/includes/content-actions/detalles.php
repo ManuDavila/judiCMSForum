@@ -21,7 +21,7 @@ $notificacion_registro = $fila_foro["notificacion_registro"];
 $notificacion_tema = $fila_foro["notificacion_tema"];
 $notificacion_mensaje = $fila_foro["notificacion_mensaje"];
 ?>	
-<div id='box_informacion_basica'>
+<div id='box_informacion_basica' class="box-hide">
 <br><br>
 <form method='post'>
 <label><h4><?php echo $inc_detalles_adm[3]; ?></h4></label>
@@ -38,12 +38,12 @@ $notificacion_mensaje = $fila_foro["notificacion_mensaje"];
 <textarea rows='8' style="width: 90%;" id='description' name='description'><?php echo $description; ?></textarea>
 <br><br>
 <button type='submit' class='btn'><?php echo $inc_detalles_adm[7]; ?></button>
-<button type="button" class="btn" id="cerrar_informacion_basica"><span class=" icon-remove-circle"></span> <?php echo $inc_detalles_adm[8]; ?></button>
+<button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_detalles_adm[8]; ?></button>
 <input type="hidden" name="informacion_basica">
 </form>
 </div>
 
-<div id='box_notificaciones'>
+<div id='box_notificaciones' class="box-hide">
 <br><br>
 <label><h4><?php echo $inc_detalles_adm[9]; ?></h4></label>
 <form method="post">
@@ -52,11 +52,11 @@ $notificacion_mensaje = $fila_foro["notificacion_mensaje"];
 <?php echo $inc_detalles_adm[12]; ?>: <input type="checkbox" name="mensajes" <?php if ($notificacion_mensaje == "on") {echo "checked";} ?>>
 <input type="hidden" name="informacion_notificaciones">
 <button type="submit" class="btn"><?php echo $inc_detalles_adm[13]; ?></button>
-<button type="button" class="btn" id="cerrar_notificaciones"><span class=" icon-remove-circle"></span> <?php echo $inc_detalles_adm[14]; ?></button>
+<button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_detalles_adm[14]; ?></button>
 </form>
 </div>
 
-<div id='box_language'>
+<div id='box_language' class="box-hide">
 <br><br>
 <label><h4><?php echo $inc_detalles_adm[15]; ?></h4></label>
 <form method="post">
@@ -80,40 +80,53 @@ if (is_dir($dir)) {
 ?>
 </select>
 <button type="submit" class="btn"><?php echo $inc_detalles_adm[16]; ?></button>
-<button type="button" class="btn" id="cerrar_language"><span class=" icon-remove-circle"></span> <?php echo $inc_detalles_adm[17]; ?></button>
+<button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_detalles_adm[17]; ?></button>
 </form>
 </div>
 <script>
-$(function(){
-$("#box_informacion_basica").hide();
-$("#box_notificaciones").hide();
-$("#box_language").hide();
+        /* 
+         * David Torres
+         * Para eliminar repeticiones, creamos esta función y luego la llamamos desde cada elemento */
+        function showHide(id) {
+            var boxes = ["informacion_basica", "notificaciones", "language"];
+            for(var i in boxes){
+                if(boxes[i]==id){
+                    $("#box_"+boxes[i]).show();
+                    $("#btn_"+boxes[i]).addClass("active");
+                } else {
+                     $("#box_"+boxes[i]).hide();
+                     $("#btn_"+boxes[i]).removeClass("active");
+                }
+            }
+        }
 
-$("#btn_informacion_basica").click(function()
-{
-$("#box_informacion_basica").show();
-$("#box_notificaciones").hide();
-$("#box_language").hide();
-});
-$("#btn_notificaciones").click(function(){
-$("#box_notificaciones").show();
-$("#box_informacion_basica").hide();
-$("#box_language").hide();
-});
-$("#btn_language").click(function(){
-$("#box_language").show();
-$("#box_informacion_basica").hide();
-$("#box_notificaciones").hide();
-});
-$("#cerrar_informacion_basica").click(function(){
-$("#box_informacion_basica").hide();
-});
-$("#cerrar_notificaciones").click(function(){
-$("#box_notificaciones").hide();
-});
-$("#cerrar_language").click(function(){
-$("#box_language").hide();
-});
+$(function(){
+
+		//iniciar con los boxes ocultos
+         $(".box-hide").hide();
+		 
+            $("#btn_informacion_basica").click(function()
+            {
+                showHide("informacion_basica");
+            });
+			
+            $("#btn_notificaciones").click(function()
+            {
+                showHide("notificaciones");
+            });
+			
+            $("#btn_language").click(function()
+            {
+                showHide("language");
+            });
+
+
+		/*Clases para el cierre del box*/
+            $(".init-box-hide").click(function()
+            {
+                $(".box-hide").fadeOut(1000);
+            });
+
 });
 </script>
 <?php
