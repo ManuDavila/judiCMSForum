@@ -258,6 +258,8 @@ $inc_themes_adm = array(
 21 => "Footer",
 22 => "Insert HTML/Javascript in the footer of the forum",
 23 => "Accept",
+24 => "Custom CSS",
+25 => "Insert Custom CSS",
 );
 /* temas-usuario.php adm/inc */
 
@@ -374,6 +376,12 @@ $pro_editar_piedepagina_adm = array(
 0 => "Action completed successfully"
 );
 /* editar-piedepagina.php adm/pro */
+
+/* editar-custom-css.php adm/pro */
+$pro_editar_custom_css_adm = array(
+0 => "Action completed successfully"
+);
+/* editar-custom-css.php adm/pro */
 
 /* eliminar-indices.php adm/pro */
 $pro_eliminar_indices_adm = array(

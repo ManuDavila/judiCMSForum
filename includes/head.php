@@ -127,6 +127,7 @@ break;
 	<link href="bootstrap/themes/<?php echo $theme_foro; ?>/bootstrap.min.css" rel="stylesheet">
 	<link href="bootstrap/css/icons.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="bootstrap/css/style.css" rel="stylesheet">
 	<script src="bootstrap/js/jquery-1.10.1.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="bootstrap/js/<?php echo $inc_head[8]; ?>"></script>
