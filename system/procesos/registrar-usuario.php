@@ -96,15 +96,17 @@ $msg_box = "
 return;
 }
 
-if ($sexo == "chico")
-{
-$avatar = "imagenes/avatares/chico.jpg";
+/* Intentamos pillar el avatar de gravatar, por si tiene uno ya, si no, usamos los que hay por defecto */
+$mail_hash = md5( strtolower( trim( $email ) ) );
+$size_avatar = 279;
+$rand = rand(10000, 99999);
+$cad = $rand."-".$nick.".jpg";
+if(copy("http://www.gravatar.com/avatar/".$mail_hash."?s=".$size_avatar."&d=404", "imagenes/avatares/".$cad)){
+    $avatar =  "imagenes/avatares/".$cad;
+} else {
+    $avatar = $sexo == "chico" ? "imagenes/avatares/chico.jpg" : "imagenes/avatares/chica.jpg" ;
 }
 
-if ($sexo == "chica")
-{
-$avatar = "imagenes/avatares/chica.jpg";
-}
 
 $elemento = $nombre;
 $buscar = "/^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ\s]+$/";
