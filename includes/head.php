@@ -131,3 +131,4 @@ break;
 	<script src="bootstrap/js/jquery-1.10.1.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="bootstrap/js/<?php echo $inc_head[8]; ?>"></script>
+        <script src="bootstrap/js/custom.js"></script>

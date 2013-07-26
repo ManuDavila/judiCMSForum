@@ -21,6 +21,7 @@ include "procesos/instalar-tema.php";
 include "procesos/editar-cabecera.php";
 include "procesos/editar-piedepagina.php";
 include "procesos/editar-custom-css.php";
+include "procesos/editar-custom-js.php";
 include "procesos/bloquear-ips.php";
 include "procesos/htaccess.php";
 include "procesos/antirobots.php";

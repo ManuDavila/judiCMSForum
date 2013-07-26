@@ -255,6 +255,8 @@ $inc_themes_adm = array(
 23 => "Aceptar",
 24 => "CSS Personalizado",
 25 => "Insertar CSS Personalizado",
+26 => "Javascript personalizado",
+27 => "Insertar javascript Personalizado"
 );
 /* temas-usuario.php adm/inc */
 
@@ -371,6 +373,12 @@ $pro_editar_custom_css_adm = array(
 0 => "Tarea realizada con éxito"
 );
 /* editar-custom-css.php adm/pro */
+
+/* editar-custom-js.php adm/pro */
+$pro_editar_custom_js_adm = array(
+0 => "Tarea realizada con éxito"
+);
+/* editar-custom-js.php adm/pro */
 
 /* eliminar-indices.php adm/pro */
 $pro_eliminar_indices_adm = array(

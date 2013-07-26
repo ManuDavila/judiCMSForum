@@ -35,6 +35,7 @@ if ($_GET["action"] == "themes") {
         <button class="btn" id="btn_cabecera"><?php echo $inc_themes_adm[4]; ?></button>
         <button class="btn" id="btn_piedepagina"><?php echo $inc_themes_adm[21]; ?></button>
         <button class="btn" id="btn_custom_css"><?php echo $inc_themes_adm[24]; ?></button>
+        <button class="btn" id="btn_custom_js"><?php echo $inc_themes_adm[26]; ?></button>
     </div>
 
     <div id="box_temas" class="box-hide">
@@ -117,6 +118,19 @@ if ($_GET["action"] == "themes") {
             <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
         </form>
     </div>
+    
+    <div id="box_custom_js" class="box-hide">
+        <br>
+        <h4><?php echo $inc_themes_adm[27]; ?></h4>
+        <form method="post">
+            <textarea rows='8' style="width: 90%; font-family: 'Lucida Console'; font-size: 12px;" id='editar_custom_js' name='editar_custom_js'>
+    <?php include "../bootstrap/js/custom.js"; ?>
+            </textarea>
+            <br><br>
+            <button type="submit" class="btn"><?php echo $inc_themes_adm[19]; ?></button>
+            <button type="button" class="btn init-box-hide"><span class=" icon-remove-circle"></span> <?php echo $inc_themes_adm[20]; ?></button>
+        </form>
+    </div>
 
     <script>
         
@@ -124,7 +138,7 @@ if ($_GET["action"] == "themes") {
          * David Torres
          * Para eliminar repeticiones, creamos esta función y luego la llamamos desde cada elemento */
         function showHide(id) {
-            var boxes = ["temas", "icono", "instalar_tema", "cabecera","piedepagina", "custom_css"];
+            var boxes = ["temas", "icono", "instalar_tema", "cabecera","piedepagina", "custom_css", "custom_js"];
             for(var i in boxes){
                 if(boxes[i]==id){
                     $("#box_"+boxes[i]).show();
@@ -169,6 +183,11 @@ if ($_GET["action"] == "themes") {
             $("#btn_custom_css").click(function()
             {
                 showHide("custom_css");
+            });
+            
+            $("#btn_custom_js").click(function()
+            {
+                showHide("custom_js");
             });
             
             /* 
