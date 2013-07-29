@@ -1,0 +1,10 @@
+Versión 1.0.0
+- Versión inicial.
+
+=========================================================
+
+Versión 1.0.1
+- Añadido cifrado para las contraseñas de usuarios y administradores en la base de datos.
+    - Es necesario usar el parche updatePassword.php para realizar cambios en las contraseñas de los usuarios actuales así como las tablas.
+    - Este parche solo es necesario para los que usan la versión 1.0.0 del JudiCMS, NO USAR en instalaciones nuevas.
+    - Por motivos de seguridad, una vez actualizada la versión se debe borrar este parche si no se ha borrado automaticamente.
