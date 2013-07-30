@@ -890,9 +890,7 @@ $pro_registro = array(
 /* subir-avatar.php */
 $pro_subir_avatar = array(
 0 => "Avatar cambiado con éxito",
-1 => "El tipo de archivo no es de los permitidos",
-2 => "Archivo desconocido",
-3 => "La imagen supera el máximo permitido"
+1 => "Error, seleccione una imagen correcta",
 );
 /* subir-avatar.php */
 
