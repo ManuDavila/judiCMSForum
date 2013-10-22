@@ -1,5 +1,8 @@
 <?php
 
+// Redirect to current page
+$location = $_SERVER['QUERY_STRING'] == '' ? $_SERVER['PHP_SELF'] : $_SERVER['PHP_SELF'] .'?'.$_SERVER['QUERY_STRING'] ;
+
 if (isset($_POST["iniciar_sesion"])) {
     /* SEGURIDAD */
     if (empty($_COOKIE["iniciar_sesion"])) {
@@ -27,11 +30,10 @@ if (isset($_POST["iniciar_sesion"])) {
     /* Encrypt pass to query the DB */
     $password = sha1($password);
 
-    $consulta = "SELECT * FROM usuarios WHERE email='$email' AND password='$password' AND activo='true'";
-    //echo $consulta; exit();
+    $consulta = "SELECT * FROM usuarios WHERE email='$email' AND password='$password' AND activo=1";
     $resultado = $conexion->query($consulta);
     $fila = $resultado->fetch_array();
-
+    
     if ($fila > 0) {
         $tiempo_de_conexion = time() + 600;
         $consulta_ip = "UPDATE usuarios SET ip='$ip', conectado=$tiempo_de_conexion WHERE id=" . $fila["id"] . "";
@@ -46,7 +48,7 @@ if (isset($_POST["iniciar_sesion"])) {
         $_SESSION["id"] = $fila["id"];
         $_SESSION["sexo"] = $fila["sexo"];
         $_SESSION["avatar"] = $fila["avatar"];
-        Header('Location: ');
+        Header('Location: '.$location);
     } else {
         session_start();
         $_SESSION["usuario"] = false;

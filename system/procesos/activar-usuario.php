@@ -28,7 +28,7 @@ if (isset($_POST["activar_usuario"])) {
     $fila = $resultado->fetch_array();
 
     if ($fila > 0) {
-        $consulta = "UPDATE usuarios SET activo='true' WHERE email='$email' AND password='$password' AND codigo_verificacion='$codigo_verificacion'";
+        $consulta = "UPDATE usuarios SET activo=1 WHERE email='$email' AND password='$password' AND codigo_verificacion='$codigo_verificacion'";
         $resultado = $conexion->query($consulta);
         $msg_box = "
 <div class='alert alert-success'>

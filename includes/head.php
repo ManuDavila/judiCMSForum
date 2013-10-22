@@ -132,3 +132,8 @@ break;
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="bootstrap/js/<?php echo $inc_head[8]; ?>"></script>
         <script src="bootstrap/js/custom.js"></script>
+        
+        <!-- TinyMCE -->
+        <!-- CDN hosted by Cachefly -->
+        <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+        

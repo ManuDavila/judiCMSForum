@@ -185,7 +185,6 @@ if (isset($_POST["servidor_db"])) {
     fclose($open_file);
 
 //Configuración .htaccess
-
     $write_htaccess =
             "RewriteEngine On
 Options +FollowSymLinks 
@@ -355,7 +354,7 @@ ErrorDocument 500 " . $ruta_absoluta . "error.php
   `avatar` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `leyenda` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `codigo_verificacion` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `activo` varchar(10) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 'false',
+  `activo` int(1) COLLATE utf8_spanish2_ci NOT NULL DEFAULT 0,
   `fecha_registro` date NOT NULL,
   `ip` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `denuncias` int(11) NOT NULL,

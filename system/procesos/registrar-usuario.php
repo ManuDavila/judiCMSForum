@@ -43,7 +43,7 @@ if (isset($_POST["registrar_usuario"])) {
     for ($x = 0; $x < 16; $x++) {
         $codigo_verificacion .= $codigo_array[rand(0, count($codigo_array) - 1)];
     }
-    $activo = "false";
+    $activo = 0;
     $fecha = date("Y-m-d");
 
     if (!preg_match("/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_]+$/", $nick)) {

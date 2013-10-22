@@ -8,3 +8,42 @@ Versión 1.0.1
     - Es necesario usar el parche updatePassword.php para realizar cambios en las contraseñas de los usuarios actuales así como las tablas.
     - Este parche solo es necesario para los que usan la versión 1.0.0 del JudiCMS, NO USAR en instalaciones nuevas.
     - Por motivos de seguridad, una vez actualizada la versión se debe borrar este parche si no se ha borrado automaticamente.
+
+
+Versión 1.0.2 22/10/2013
+- Solucionado Issue #1
+    - Solucionado problema de redirección al iniciar sesión como usuario.
+    - Archvos implicados
+        system/procesos/iniciar-sesion.php
+
+- Cambios en la BBDD
+    - El campo activo de la tabla usuarios cambia de VARCHAR a INT
+    - Cambios en tabla usuario:
+        Si el usuario está activo ahora es 1, inactivo es 0 y no true or false
+    - Archvos implicados
+        system/procesos/activar-usuario.php
+        system/procesos/iniciar-sesion.php
+        system/procesos/registrar-usuario.php
+        install.php
+    - Tablas implicadas
+        - Ejecutar el siguiente script sql.
+        ALTER TABLE `usuarios` CHANGE COLUMN `activo` `activo` INT(1) NOT NULL DEFAULT 0  ; 
+    - Notas
+        Se deben modificar la activación de los usuarios ANTES del alter table
+        UPDATE `usuarios` SET activo=1 WHERE activo='true';
+        UPDATE `usuarios` SET activo=0 WHERE activo='false';
+
+- Añadido soporte para TinyMCE
+    - La implementación de tinyMCE es usando un CDN (//tinymce.cachefly.net/4.0/tinymce.min.js)
+    - Ahora los mensajes y temas tiene mejor aspecto gracias al tinyMCE.
+    - Archvos implicados
+        - includes/head.php
+        - bootstrap/js/javascript-es.js
+        - bootstrap/js/javascript-en.js
+        - includes/content-actions/tema.php
+        - system/session.php
+    - TODO
+        - Eliminar referencias invalidas y limpiar un poco el codigo del mismo.
+        - Implementar tinyMCE en local y no CDN.
+        - Posibilidad de usar o no usar TinyMCE?
+        
