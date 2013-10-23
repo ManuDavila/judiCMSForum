@@ -3,4 +3,6 @@ Disallow: /admin/
 Disallow: /system/
 Disallow: /includes/
 Disallow: /bootstrap/
-Sitemap: http://www.mercado-anuncios.es/sitemap.php
+# In order to add sitemap uncomment the line below and add the full url to sitemap.php file
+# Example:
+# Sitemap: http://www.my-super-forum.es/sitemap.php
