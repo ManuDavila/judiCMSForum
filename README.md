@@ -14,4 +14,3 @@ de nuevos temas o comentarios.
 
 La instalación es bastante sencilla y se realiza a través del archivo install.php
 
-Para mas información ir a la web oficial de Judi CMS Forum: http://www.judicms.com
